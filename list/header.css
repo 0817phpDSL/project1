@@ -4,15 +4,16 @@
 	box-sizing: border-box;
 }
 
-header {
-	background-color: aquamarine;
-	height: 80px;
-}
-
-.main-tit {
+.h_header {
 	display: inline-block;
 	color: #FFCACA;
 	font-size: 2rem;
-	margin: 20px 50px
-}
 
+	background-color: white;
+	
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	margin-left: 30px;
+	float: left;
+}

@@ -6,12 +6,14 @@
 .section-nav {
 	width: 200px;
 	height: 500px;
-	background-color: rgb(255, 246, 181);
+	float: left;
+	/* background-color: rgb(255, 246, 181); */
 }
 
 .section-div {
 	display: inline-block;
-	margin: 120px 30px;
+	margin: 50px 30px;
+
 }
 
 .p-nav {
