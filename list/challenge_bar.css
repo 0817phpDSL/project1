@@ -23,7 +23,7 @@
     display: inline-block;
 }
 /* 헤더 영역 */
-header {
+.challenge_header {
     width: 230px;
     height: 130px;
     font-size: 24px;
