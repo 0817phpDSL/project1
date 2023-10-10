@@ -17,6 +17,9 @@
     box-sizing: border-box;
     /* 그림자 */
     box-shadow: -3px 0px 7px 0.5px rgba(197, 197, 197, 0.301);
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 /* 챌린지 타이틀 글자 */
 .challenge_title {
