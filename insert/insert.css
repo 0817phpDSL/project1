@@ -3,65 +3,79 @@
 	margin:0;
 	padding:0;
 	box-sizing: content-box;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-family: 'Noto Serif KR', serif;
+	font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #424242;
 }
 .container{
 	border: 1px solid #F2F4F7;
 	float: right;
-	width: 1300px;
+	width: 1700px;
 	height:1300px;
-	float: left;
+	float:right;
 	background-color: #F2F4F7;
-	border-radius:10px 10px 10px 10px;
+	border-radius:20px 20px 20px 20px;
+	padding-left: 100px;
 }
-p{
+.create_at{
 	margin:20px;
 }
 .div_1{
-	border:1px solid gray;
+	
+	border:1px solid #F2F4F7;
 	border-radius: 10px 10px 10px 10px;
-	width:300px;
-	margin:10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
 	background-color:#fff;
 	text-align: left;
 	float:left;
 	
 }
+.div_css{
+height: 150px;
+box-sizing: border-box;
+}
+
 .div_2{
-	border:1px solid gray;
+	border:1px solid #F2F4F7;
 	border-radius: 10px 10px 10px 10px;
-	width:300px;
-	margin:10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
 	background-color:#fff;
 	text-align: left;
 	clear:both;
 
 }
 .div_3{
-	border:1px solid gray;
+	border:1px solid #F2F4F7;
 	border-radius: 10px 10px 10px 10px;
-	width:300px;
-	margin:10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
 	float:left;
 	background-color:#fff;
 	text-align: left;
 
 }
 .div_4{
-	border:1px solid gray;
+	border:1px solid #F2F4F7;
 	border-radius: 10px 10px 10px 10px;
-	width:300px;
-	margin:10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
 	clear:both;
 	background-color:#fff;
 	text-align: left;
 }
 .div_5{
-	border:1px solid gray;
+	border:1px solid #F2F4F7;
 	border-radius: 10px 10px 10px 10px;
-	width:300px;
-	margin:10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
 	float: left;
 	background-color:#fff;
 	text-align: left;	
@@ -69,7 +83,7 @@ p{
 footer{
 	position:fixed;
 	bottom: 10px;
-	right:690px;
+	right:200px;
 }
 button{
 	margin:5px;
@@ -89,7 +103,4 @@ button{
 	height:30px;
 	border-radius: 5px 5px 5px 5px;
 }
-@font-face {
-	font-family: ;
-	src: url();
-}
+
