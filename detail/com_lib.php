@@ -26,3 +26,42 @@ function my_db_conn( &$conn ) {
         return false;
     }
 }
+ // ------------------------------------
+    // 함수명        : db_destroy_conn
+    // 기능          : DB destroy
+    // 파라미터      : PDO    &$conn
+    // 리턴          : 없음
+    // ------------------------------------
+ function db_destroy_conn(&$conn) {
+        $conn = null;
+}
+
+// 리스트 제목 함수
+function db_select_create_information_title(&$conn) {
+
+try {
+    $sql =
+    " SELECT ".
+    " ch_inf.c_name, ch_inf.l_name ".
+    " FROM ".
+    " chal_info ch_inf ".
+    " JOIN ".
+    " create_information create_inf ".
+    " ON ".
+    " ch_inf.c_id=create_inf.c_id ".
+    " AND ".
+    " create_inf.c_id=1 ".
+    " LIMIT 1 "
+ ;
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->fetchAll();
+
+return $result; // 정상 : 쿼리 결과 리턴
+
+} catch(Exception $e) {
+return false; // 예외발생 : false 리턴
+
+}
+}
