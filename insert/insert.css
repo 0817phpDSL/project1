@@ -2,7 +2,7 @@
 *{
 	margin:0;
 	padding:0;
-	box-sizing: content-box;
+	box-sizing: border-box;
 	font-family: 'Black Han Sans', sans-serif;
     font-family: 'Nanum Pen Script', cursive;
     font-family: 'Noto Sans KR', sans-serif;
