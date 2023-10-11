@@ -36,13 +36,14 @@ function my_db_conn( &$conn ) {
         $conn = null;
 }
 
-// 리스트 제목 함수
-function db_select_create_information_title(&$conn) {
+// 리스트 함수
+function db_select_create_information(&$conn) {
 
 try {
     $sql =
     " SELECT ".
-    " ch_inf.c_name, ch_inf.l_name ".
+    " ch_inf.c_name, ch_inf.l_name, DATE(create_inf.c_created_at) as c_created_at,
+        DATE(create_inf.c_com_at) as c_com_at ".
     " FROM ".
     " chal_info ch_inf ".
     " JOIN ".
@@ -50,8 +51,7 @@ try {
     " ON ".
     " ch_inf.c_id=create_inf.c_id ".
     " AND ".
-    " create_inf.c_id=1 ".
-    " LIMIT 1 "
+    " create_inf.create_id=1 "
  ;
 
 $stmt = $conn->prepare($sql);
@@ -64,4 +64,27 @@ return $result; // 정상 : 쿼리 결과 리턴
 return false; // 예외발생 : false 리턴
 
 }
+}
+
+// db 완료된 리스트 조회
+function db_select_com_list(&$conn) {
+    try {
+    $sql = 
+    " SELECT ".
+    " * ".
+    " FROM ".
+    " create_information ".
+    " WHERE ".
+    " c_com_at IS NOT NULL"
+    ;
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+return $result; // 정상 : 쿼리 결과 리턴
+
+} catch(Exception $e) {
+    return false; // 예외발생 : false 리턴
+
+    }
 }
