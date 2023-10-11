@@ -14,16 +14,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="challenge_bar.css">
-    <link rel="stylesheet" href="status.css">
-    <link rel="stylesheet" href="list_com.css">
+    <link rel="stylesheet" href="../list/header.css">
+    <link rel="stylesheet" href="../list/challenge_bar.css">
+    <link rel="stylesheet" href="../list/status.css">
+    <link rel="stylesheet" href="complete.css">
 </head>
 <body>
     <?php
-    require_once("header.html");
-    require_once("challenge_bar.html");
-    require_once("status.html");
+    require_once("../list/header.html");
+    require_once("../list/challenge_bar.html");
+    require_once("../list/status.html");
     
     ?>
 
