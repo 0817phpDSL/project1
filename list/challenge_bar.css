@@ -20,6 +20,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    background-color: white;
 }
 /* 챌린지 타이틀 글자 */
 .challenge_title {
