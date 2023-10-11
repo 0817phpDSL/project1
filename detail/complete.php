@@ -1,6 +1,10 @@
 <!-- xcopy D:\workspace\project1 C:\Apache24\htdocs\project1 /E /Y -->
 
 <?php
+require_once("com_lib.php"); // DB 라이브러리
+
+// DB connect
+$conn = null; // DB 커넥션 변수
 
 ?>
 <!DOCTYPE html>
