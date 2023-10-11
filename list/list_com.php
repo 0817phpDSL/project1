@@ -10,6 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="challenge_bar.css">
     <link rel="stylesheet" href="status.css">
@@ -17,32 +21,32 @@
 </head>
 <body>
     <?php
+    require_once("header.html");
     require_once("challenge_bar.html");
+    require_once("status.html");
+    
     ?>
-    <header class="h_header">
-	갓생살기
-    </header>
-
-    <section class="section-nav">
-		<div class="section-div">
-		<p class="p-nav">Status</p>
-		<br>
-		<p class="box-in"></p><a href=""> in progress</a>
-		<br>
-		<p class="box-com"></p><a href=""> complete</a>
-	</div>
-	</section>
 
     <main class="list_com_main">
-        <div class="list_com">
-            <p class="list_com_title">다이어트</p>
+        <div class="list_com_bg">
+            <div class="list_com_border">
+
+                <div class="list_header">
+                    <p class="list_com_title">다이어트</p>
+                    <p class="list_date"> 2023/10/01 ~ <span class="red">2023/10/03 <span> </p>
+                </div>
             <ul>
-                <li>물 2L 이상 마시기</li>
-                <hr>
-                <li>매끼 단백질 섭취</li>
-                <li>플랭크 30~40초 5세트하기</li>
-                <li>하루 10000보 걷기</li>
+            <li><div class="bullet"></div>물 2L 이상 마시기</li>
+            <div class="border_line"></div>
+                <li><div class="bullet"></div>매끼 단백질 섭취</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>플랭크 30~40초 5세트하기</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>하루 10000보 걷기</li>
+                <div class="border_line"></div>
             </ul>
+            <a class="list_delete" href=""><img src="../src/trash.png" alt="">삭제</a>
+        </div>
         </div>
     </main>
 </body>
