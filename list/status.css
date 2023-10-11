@@ -17,7 +17,7 @@
 }
 
 .p-nav {
-	font-weight: lighter;
+	font-weight: bold;
 }
 
 .box-in {
@@ -26,6 +26,7 @@
 	background-color: #5398F8;
 	border-radius: 50%;
 	display: inline-block;
+	font-weight: bold;
 }
 
 .box-com {
@@ -34,10 +35,10 @@
 	background-color: #44DE54;
 	border-radius: 50%;
 	display: inline-block;
+	font-weight: bold;
 }
 
 a {
-	font-weight: lighter;
 	color: #000;
 	text-decoration: none;
 }
