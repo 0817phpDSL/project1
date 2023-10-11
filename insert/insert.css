@@ -10,8 +10,8 @@
 }
 .container{
 	border: 1px solid #F2F4F7;
-	float: right;
-	width: 1700px;
+	float:right;
+	width: 1600px;
 	height:1300px;
 	background-color: #F2F4F7;
 	border-radius:20px 0px 0px 20px;
@@ -21,7 +21,7 @@
 	height: 200px;
 	box-sizing: border-box;
 	filter:drop-shadow(2px 4px 6px gray);
-	}
+}
 .create_at{
 	margin:20px;
 }
@@ -34,53 +34,7 @@
 	background-color:#fff;
 	text-align: left;
 	float:left;
-	margin:30px ;
-}
-
-.div_2{
-	border:1px solid #F2F4F7;
-	border-radius: 10px 10px 10px 10px;
-	width:550px;
-	margin:15px;
-	padding:10px;
-	background-color:#fff;
-	text-align: left;
-	clear:both;
-	margin:30px ;
-
-}
-.div_3{
-	border:1px solid #F2F4F7;
-	border-radius: 10px 10px 10px 10px;
-	width:550px;
-	margin:15px;
-	padding:10px;
-	float:left;
-	background-color:#fff;
-	text-align: left;
-	margin:30px;
-}
-.div_4{
-	border:1px solid #F2F4F7;
-	border-radius: 10px 10px 10px 10px;
-	width:550px;
-	margin:15px;
-	padding:10px;
-	clear:both;
-	background-color:#fff;
-	text-align:left;
-	margin:30px;
-}
-.div_5{
-	border:1px solid #F2F4F7;
-	border-radius: 10px 10px 10px 10px;
-	width:550px;
-	margin:15px;
-	padding:10px;
-	float: left;
-	background-color:#fff;
-	text-align: left;
-	margin:30px;
+	margin:30px ;	
 }
 footer{
 	position:fixed;
@@ -118,3 +72,50 @@ button,a{
 .div_css:focus{
 	border: 5px solid #FFDEAC;
 }
+
+/* 
+.div_2{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	background-color:#fff;
+	text-align: left;
+	clear:both;
+	margin:30px ;
+}
+.div_3{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	float:left;
+	background-color:#fff;
+	text-align: left;
+	margin:30px;
+}
+.div_4{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	clear:both;
+	background-color:#fff;
+	text-align:left;
+	margin:30px;
+}
+.div_5{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	float: left;
+	background-color:#fff;
+	text-align: left;
+	margin:30px;
+} */
+
