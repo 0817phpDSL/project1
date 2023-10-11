@@ -24,7 +24,6 @@
 <form action="">
 	<div class="container">
 		<p class="create_at">2023년 10월 10일</p>
-
 			<button class="div_1 div_css">
 				<h3>건강한 아침 챌린지</h3>
 				<br>		
@@ -83,10 +82,10 @@
 					오후 11시전 취침 0/1
 					<br>
 					채식 하루 도전 0/1
-			</button>
+			</button>	
 			<footer>
-				<button class="button_no">안해</button>
-				<button class="button_yes">화이팅</button>
+				<button class="button_no div_css"><a class="a_button" href="../project1/list/main.php">안해</a></button>
+				<button class="button_yes div_css" type="submit">화이팅</button>
 			</footer>
 	</div>	
 
