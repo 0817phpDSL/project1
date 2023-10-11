@@ -46,11 +46,16 @@ li {
     height: 100vh;
     margin-top: 80px;
     margin-left: 200px;
-    padding: 120px;
+    padding: 50px;
     border-radius: 20px 0px 0px 20px;
 
 }
 /* 리스트 영역 */
+.list_section {
+    width: 1500px;
+    height: 100%;
+}
+/* 리스트 */
 .list_com_bg {
     float: left;
     font-size: 14px;
@@ -61,6 +66,9 @@ li {
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     padding-top: 18px;
+    margin-left: 40px;
+    margin-bottom: 50px;
+
 }
 /* 리스트 내부 선 */
 .list_com_border {
@@ -89,7 +97,7 @@ li {
     display: inline-block;
     width: 30px;
     height: 20px;
-    margin-left: 295px;
+    margin-left: 300px;
 }
 /* a {
     display: inline-block;

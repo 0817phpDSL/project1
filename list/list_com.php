@@ -28,6 +28,7 @@
     ?>
 
     <main class="list_com_main">
+    <div class="list_section">
         <div class="list_com_bg">
             <div class="list_com_border">
 
@@ -45,7 +46,110 @@
                 <li><div class="bullet"></div>하루 10000보 걷기</li>
                 <div class="border_line"></div>
             </ul>
-            <a class="list_delete" href=""><img src="../src/trash.png" alt="">삭제</a>
+            <a class="list_delete" href=""><img src="../src/icon_trash_.png" alt="" width="20"></a>
+        </div>
+        </div>
+        <div class="list_com_bg">
+            <div class="list_com_border">
+
+                <div class="list_header">
+                    <p class="list_com_title">다이어트</p>
+                    <p class="list_date"> 2023/10/01 ~ <span class="red">2023/10/03 <span> </p>
+                </div>
+            <ul>
+            <li><div class="bullet"></div>물 2L 이상 마시기</li>
+            <div class="border_line"></div>
+                <li><div class="bullet"></div>매끼 단백질 섭취</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>플랭크 30~40초 5세트하기</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>하루 10000보 걷기</li>
+                <div class="border_line"></div>
+            </ul>
+            <a class="list_delete" href=""><img src="../src/icon_trash_.png" alt="" width="20"></a>
+        </div>
+        </div>
+        <div class="list_com_bg">
+            <div class="list_com_border">
+
+                <div class="list_header">
+                    <p class="list_com_title">다이어트</p>
+                    <p class="list_date"> 2023/10/01 ~ <span class="red">2023/10/03 <span> </p>
+                </div>
+            <ul>
+            <li><div class="bullet"></div>물 2L 이상 마시기</li>
+            <div class="border_line"></div>
+                <li><div class="bullet"></div>매끼 단백질 섭취</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>플랭크 30~40초 5세트하기</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>하루 10000보 걷기</li>
+                <div class="border_line"></div>
+            </ul>
+            <a class="list_delete" href=""><img src="../src/icon_trash_.png" alt="" width="20"></a>
+        </div>
+        </div>
+        <div class="list_com_bg">
+            <div class="list_com_border">
+
+                <div class="list_header">
+                    <p class="list_com_title">다이어트</p>
+                    <p class="list_date"> 2023/10/01 ~ <span class="red">2023/10/03 <span> </p>
+                </div>
+            <ul>
+            <li><div class="bullet"></div>물 2L 이상 마시기</li>
+            <div class="border_line"></div>
+                <li><div class="bullet"></div>매끼 단백질 섭취</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>플랭크 30~40초 5세트하기</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>하루 10000보 걷기</li>
+                <div class="border_line"></div>
+            </ul>
+            <a class="list_delete" href=""><img src="../src/icon_trash_.png" alt="" width="20"></a>
+        </div>
+        </div>
+        <!--  -->
+        <div class="list_com_bg">
+            <div class="list_com_border">
+
+                <div class="list_header">
+                    <p class="list_com_title">다이어트</p>
+                    <p class="list_date"> 2023/10/01 ~ <span class="red">2023/10/03 <span> </p>
+                </div>
+            <ul>
+            <li><div class="bullet"></div>물 2L 이상 마시기</li>
+            <div class="border_line"></div>
+                <li><div class="bullet"></div>매끼 단백질 섭취</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>플랭크 30~40초 5세트하기</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>하루 10000보 걷기</li>
+                <div class="border_line"></div>
+            </ul>
+            <a class="list_delete" href=""><img src="../src/icon_trash_.png" alt="" width="20"></a>
+        </div>
+        </div>
+        <!-- -->
+        <div class="list_com_bg">
+            <div class="list_com_border">
+
+                <div class="list_header">
+                    <p class="list_com_title">다이어트</p>
+                    <p class="list_date"> 2023/10/01 ~ <span class="red">2023/10/03 <span> </p>
+                </div>
+            <ul>
+            <li><div class="bullet"></div>물 2L 이상 마시기</li>
+            <div class="border_line"></div>
+                <li><div class="bullet"></div>매끼 단백질 섭취</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>플랭크 30~40초 5세트하기</li>
+                <div class="border_line"></div>
+                <li><div class="bullet"></div>하루 10000보 걷기</li>
+                <div class="border_line"></div>
+            </ul>
+            <a class="list_delete" href=""><img src="../src/icon_trash_.png" alt="" width="20"></a>
+        </div>
         </div>
         </div>
     </main>
