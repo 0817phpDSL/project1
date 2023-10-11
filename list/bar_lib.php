@@ -31,16 +31,18 @@ function db_destroy_conn(&$conn) {
     $conn = null;
 }
 
-function db_select_challenge(&$conn) {
+function db_select_challenge_bar(&$conn) {
 	try {
 		$sql = 
-		" SELECT "
-		." * "
-		." FROM "
-		." create_information cr "
-		." JOIN "
-		." chal_info ch "
-		." ON cr.c_id = ch.c_id ";
+        " SELECT "
+        ." cr.create_id, ch.c_name "
+        ." FROM "
+        ." create_information cr "
+        ." JOIN "
+        ." chal_info ch "
+        ." ON "
+        ." cr.c_id = ch.c_id "
+        ." GROUP BY cr.create_id ";
 
 
 		$stmt = $conn->query($sql);
@@ -50,3 +52,4 @@ function db_select_challenge(&$conn) {
         return false; // 예외 발생 : false 리턴
     }
 }
+    
