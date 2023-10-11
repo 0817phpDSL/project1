@@ -1,0 +1,17 @@
+.border_line {
+    border-top: 2px solid #FFCACA;
+}
+.list_com_main {
+    background-color: #F2F4F7;
+    width: 1000px;
+    height: 100vh;
+    margin-top: 80px;
+
+    border-radius: 20px 0px 0px 20px;
+}
+.list_com {
+    width: 230px;
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+    float: left;
+}
