@@ -1,4 +1,8 @@
 <!-- xcopy D:\workspace\project1 C:\Apache24\htdocs\project1 /E /Y -->
+<?php
+require_once("insert_lib.php");
+
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,14 +21,15 @@
 </head>
 <body>
 	<?php
-;
 	require_once("../list/header.html");
 	require_once("../list/status.html");
 	?>
-<form action="">
+<form action="" method="post">
 	<div class="container">
 		<p class="create_at">2023년 10월 10일</p>
-			<button class="div_1 div_css">
+
+		<label for="chk1" class="div_1 div_css">
+		<input type="radio" name="chk" id="chk1" value="1">
 				<h3>건강한 아침 챌린지</h3>
 				<br>		
 					스트레칭 하기 0/1
@@ -34,9 +39,10 @@
 					햇볓 쬐기 0/1
 					<br>
 					아침 식사 0/1
-				</button>
+		</label>
 
-			<button class="div_2 div_css">
+			<label for="chk2" class="div_1 div_css">
+			<input type="radio" name="chk" id="chk2" value="2">
 				<h3>좋은 수면 챌린지</h3> 
 				<br>
 					스트레칭 하기 0/1
@@ -46,9 +52,11 @@
 					하루 7시간 이상 취침 0/1
 					<br>
 					독서하기 0/1		
-			</button>
+			</label>
+
 				<br>
-				<button class="div_3 div_css">
+				<label for="chk3" class="div_1 div_css">
+				<input type="radio" name="chk" id="chk3" value="3">
 					<h3>뇌 건강 챌린지</h3>
 					<br>
 					20분 산책하기 0/1
@@ -58,8 +66,10 @@
 					독서하기 0/1
 					<br>
 					일기 쓰기 0/1
-				</button>
-			<button class="div_4 div_css">
+				</label>
+
+				<label for="chk4" class="div_1 div_css">
+				<input type="radio" name="chk" id="chk4" value="4">
 					<h3>다이어트 챌린지</h3>
 					<br>
 					물 2리터 이상 마시기 0/1
@@ -69,12 +79,12 @@
 					플랭크 30~40초 5세트 하기 0/1
 					<br>
 					하루 10000보 걷기
-			</button>
+				</label>
 			<br>
-			<button class="div_5 div_css">
+			<label for="chk5" class="div_1 div_css">
+			<input type="radio" name="chk" id="chk5" value="5">
 					<h3>갓생살기</h3> 
 					<br>
-					<div class="div_content">
 					하루 sns 금지 0/1
 					<br>
 					매일 3000원 저금하기 0/1
@@ -82,10 +92,10 @@
 					오후 11시전 취침 0/1
 					<br>
 					채식 하루 도전 0/1
-			</button>	
+			</label>	
 			<footer>
-				<button class="button_no div_css"><a class="a_button" href="../project1/list/main.php">안해</a></button>
-				<button class="button_yes div_css" type="submit">화이팅</button>
+				<button class="button_yes div_css" type="submit">확인</button>
+				<button class="button_no div_css"><a class="a_button" href="../project1/list/main.php">취소</a></button>
 			</footer>
 	</div>	
 

@@ -1,6 +1,6 @@
 <?php
 
-function db_select_list(&$conn, &$arr_post) {
+function db_select_list(&$conn, &$arr_get) {
 	try {
 		$sql =
         " SELECT "
@@ -14,7 +14,62 @@ function db_select_list(&$conn, &$arr_post) {
         ." cr.create_id = :create_id ";
 
         $arr_ps = [
+            ":create_id" => $arr_get["create_id"]
+        ];
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        return false; // 예외 발생 : false 리턴
+    }
+}
+
+function db_select_list_name(&$conn, &$arr_get) {
+	try {
+		$sql = 
+        " SELECT "
+        ." ch.c_name "
+        ." FROM "
+        ." create_information cr "
+        ." JOIN "
+        ." chal_info ch "
+        ." ON "
+        ." cr.c_id = ch.c_id "
+        ." AND "
+        ." create_id = :create_id "
+        ." GROUP BY cr.create_id ";
+
+        $arr_ps = [
+            ":create_id" => $arr_get["create_id"]
+        ];
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        return false; // 예외 발생 : false 리턴
+    }
+}
+
+function db_complete_list(&$conn, &$arr_post) {
+    try {
+        $sql = " UPDATE "
+        ." create_information cr "
+        ." JOIN "
+        ." chal_info ch "
+        ." ON cr.c_id = ch.c_id "
+        ." SET cr.l_com_at".$arr_post["l_id"]." = NOW() "
+        ." WHERE "
+        ." cr.create_id = :create_id "
+        ." AND "
+        ." ch.l_id = :l_id ";
+
+        $arr_ps = [
             ":create_id" => $arr_post["create_id"]
+            ,":l_id" => $arr_post["l_id"]
         ];
 
         $stmt = $conn->prepare($sql);

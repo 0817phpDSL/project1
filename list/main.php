@@ -20,8 +20,10 @@
     require_once("challenge_bar.html");
     require_once("status.html");
     ?>
-    <div class=main_section>
-
-    </div>
+<main>
+  <div class="container">
+    <p>DSL</p>
+  </div>
+  </main>
 </body>
 </html>

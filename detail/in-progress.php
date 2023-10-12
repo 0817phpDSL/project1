@@ -3,23 +3,53 @@
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/list/bar_lib.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/detail/in_lib.php");
 
+
 if(!my_db_conn($conn)) {
 	// DB Instance 에러
 	throw new Exception("DB Error : PDO Instance");
 }
-
 $http_method = $_SERVER["REQUEST_METHOD"];
-$arr_post = $_POST;
+	$arr_get = $_GET;
+	$arr_get["create_id"] = isset($arr_get["create_id"]) ? $arr_get["create_id"] : "1";
+if($http_method === "POST") {
+	try{
+		$arr_post = $_POST;
+		$arr_post["l_id"] = isset($arr_post["l_id"]) ? $arr_post["l_id"] : "";
+		print_r($arr_post);
 
-$arr_post["create_id"] = isset($arr_post["create_id"]) ? $arr_post["create_id"] : "1";
-print_r($arr_post);
+		$arr_get = $arr_post;
 
-$list = db_select_list($conn, $arr_post);
+		$com_list = db_complete_list($conn, $arr_post);
+		if($com_list === false) {
+		throw new Exception("complete_list Error");
+
+		}
+		$conn->commit();
+		header("Location: in-progress.php");
+		exit;
+
+	} catch(Exception $e) {
+		$conn->rollBack();
+		echo $e->getMessage(); // Exception 메세지 출력
+		exit;
+	} finally {
+		db_destroy_conn($conn); // DB 파기
+	}
+}
+
+$list = db_select_list($conn, $arr_get);
 if($list === false) {
 	// DB Instance 에러
 	throw new Exception("list Error");
 
 }
+
+$list_name = db_select_list_name($conn, $arr_get);
+if($list_name === false) {
+	throw new Exception("list_name Error");
+}
+
+
 
 ?>
 
@@ -45,13 +75,17 @@ if($list === false) {
 	require_once("../list/challenge_bar.php");
     ?>
 	<section class="section-in">
-		<form class="form-in" action="">
+		<form class="form-in" action="in-progress.php" method="post">
 			<p class="create_at">2023년 10월 10일</p>
-			<p class="ch-name">건강한 아침</p>
+			<?php
+			foreach($list_name as $tit) { ?>
+			<p class="ch-name"><?php echo $tit["c_name"]; ?></p>
+			<?php } ?>
 			<progress class="progress" value="50" max="100"></progress>
 			<?php
 			foreach($list as $item) { ?>
-			<button class="button-in"><p class="pro-menu"><?php echo $item["l_name"] ?></p> <p class="pro-clear">1/1</p></button>
+			<input type="hidden" name="create_id" value="<?php echo $item["create_id"] ?>">
+			<button class="button-in" name="l_id" value="<?php echo $item["l_id"];?>"><p class="pro-menu" ><?php echo $item["l_name"] ?></p> <p class="pro-clear">1/1</p></button>
 		<?php } ?>
 			<a href=""><img class="trash" src="../src/trash.png" alt=""></a>
 		</form>
