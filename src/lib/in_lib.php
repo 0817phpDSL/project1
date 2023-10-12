@@ -1,5 +1,7 @@
 <?php
 
+require_once(ROOT."lib/bar_lib.php");
+
 function db_select_list(&$conn, &$arr_get) {
 	try {
 		$sql =

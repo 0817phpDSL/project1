@@ -1,5 +1,4 @@
 <?php
-define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); //웹 서버
 require_once(ROOT."lib/bar_lib.php");
 
 $conn = null;
@@ -26,7 +25,7 @@ try {
 
 ?>
 
-<link rel="stylesheet" href="css/challenge_bar.css">
+<link rel="stylesheet" href="./css/challenge_bar.css">
 <div class="challenge_bar box1">
     <form action="/project1/detail/in-progress.php" method="get">
         <header class="challenge_header">

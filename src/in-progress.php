@@ -1,7 +1,10 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"]."/project1/list/bar_lib.php");
-require_once($_SERVER["DOCUMENT_ROOT"]."/project1/detail/in_lib.php");
+define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/");
+define("FILE_HEADER", ROOT."html/header.html");
+define("FILE_STATUS", ROOT."html/status.html");
+define("FILE_CHALLENGE", ROOT."challenge_bar.php");
+require_once(ROOT."lib/in_lib.php");
 
 $com = [];
 
@@ -72,21 +75,21 @@ if($list_per === false) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="in-progress.css">
+	<link rel="stylesheet" href="./css/in-progress.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="../list/header.css">
-	<link rel="stylesheet" href="../list/status.css">
-	<link rel="stylesheet" href="../list/challenge_bar.css">
+	<link rel="stylesheet" href="./css/header.css">
+	<link rel="stylesheet" href="./css/status.css">
+	<link rel="stylesheet" href="./css/challenge_bar.css">
 	<title>Document</title>
 </head>
 <body>
 	<?php
-    require_once("../list/header.html");
-    require_once("../list/status.html");
-	require_once("../list/challenge_bar.php");
+    require_once(FILE_HEADER);
+	require_once(FILE_STATUS);
+	require_once(FILE_CHALLENGE);
     ?>
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
