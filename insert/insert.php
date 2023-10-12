@@ -1,11 +1,55 @@
 <!-- xcopy D:\workspace\project1 C:\Apache24\htdocs\project1 /E /Y -->
 <?php
 require_once("insert_lib.php");
-
+$conn=null;
 try{
 	// DB접속
 	if(!my_db_conn($conn)){
-		throw new exception ("DB Error : PDO Instance")
+		throw new exception ("DB Error : PDO Instance");
+	}
+	$result = db_select_chal_conn($conn, $arr_param);
+	if(!$result){
+		throw new Exception("DB Error:Challenge info error");
+	}
+
+} catch(Exception $e){
+	echo $e->getMessage();
+	exit;
+}
+finally {
+	db_destroy_conn($conn);
+} 
+// POST로 request가 왔을 때 처리
+$http_method=$_SERVER["REQUEST_METHOD"];
+if($http_method === "POST"){
+	try{
+		$arr_post = $_POST;
+		$conn=null; //DB connection 변수
+		// // 파라미터 획득
+		$arr_post["c_id"] = isset($_POST["c_id"]) ? trim($_POST["c_id"]) : "1";
+			// DB 접속
+			if(!my_db_conn($conn)){
+				//db instance 에러
+				throw new Exception(
+					"DB Error : PDO instance");
+			}
+			$conn->beginTransaction(); //트랜잭션 시작
+
+			// insert
+			if(!db_insert_create_at($conn, $arr_post)) {
+				//DB Insert 에러
+				throw new Exception("DB Error : Insert Boards");
+			}
+			$conn->commit(); //모든 처리 완료 시 커밋
+			// 리스트 페이지로 이동
+			// header("Location: main.php");
+			// exit;
+	} catch(Exception $e) {
+		$conn->rollBack();
+		echo $e->getMessage(); //exception 메세지 출력
+		exit;
+	} finally {
+		db_destroy_conn($conn); //DB 파기
 	}
 }
 
@@ -16,13 +60,11 @@ try{
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="insert.css">
+	<link rel="stylesheet" href="../list/header.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="../list/header.css">
 <link rel="stylesheet" href="../list/status.css">
-
 <title>Document</title>
 	
 </head>
@@ -31,81 +73,70 @@ try{
 	require_once("../list/header.html");
 	require_once("../list/status.html");
 	?>
-<form action="" method="post">
+
+<form class="boxed" action="/project1/insert/insert.php" method="post">
 	<div class="container">
 		<p class="create_at">2023년 10월 10일</p>
 
-		<label for="chk1" class="div_1 div_css">
-		<input type="radio" name="chk" id="chk1" value="1">
-				<h3>건강한 아침 챌린지</h3>
-				<br>		
-					스트레칭 하기 0/1
+		<input type="radio" name="chk" id="chk1" value="<?php echo $result[0]["c_id"] ?>">
+			<label for="chk1" class="div_1">
+				<h3><?php echo $result[0]["c_name"]?></h3>
 					<br>
-					물 마시기 0/1
-					<br>
-					햇볓 쬐기 0/1
-					<br>
-					아침 식사 0/1
+					<p><?php echo $result[0]["l_name"]?></p>
+					<p><?php echo $result[1]["l_name"]?></p>
+					<p><?php echo $result[2]["l_name"]?></p>
+					<p><?php echo $result[3]["l_name"]?></p>
 		</label>
 
-			<label for="chk2" class="div_1 div_css">
-			<input type="radio" name="chk" id="chk2" value="2">
-				<h3>좋은 수면 챌린지</h3> 
-				<br>
-					스트레칭 하기 0/1
+		<input type="radio" name="chk" id="chk2" value="<?php echo $result[4]["c_id"] ?>">
+			<label for="chk2" class="div_1">
+				<h3><?php echo $result[4]["c_name"]?></h3>
 					<br>
-					자기 전 카페인 섭취하지 않기 0/1
-					<br>
-					하루 7시간 이상 취침 0/1
-					<br>
-					독서하기 0/1		
-			</label>
+					<p><?php echo $result[4]["l_name"]?></p>
+					<p><?php echo $result[5]["l_name"]?></p>
+					<p><?php echo $result[6]["l_name"]?></p>
+					<p><?php echo $result[7]["l_name"]?></p>		
+		</label>
+		<br>
 
-				<br>
-				<label for="chk3" class="div_1 div_css">
-				<input type="radio" name="chk" id="chk3" value="3">
-					<h3>뇌 건강 챌린지</h3>
+		<input type="radio" name="chk" id="chk3" value="<?php echo $result[8]["c_id"] ?>">
+			<label for="chk3" class="div_1">
+				<h3><?php echo $result[8]["c_name"]?></h3>
 					<br>
-					20분 산책하기 0/1
-					<br>
-					견과류 먹기 0/1 
-					<br>
-					독서하기 0/1
-					<br>
-					일기 쓰기 0/1
-				</label>
+					<p><?php echo $result[8]["l_name"]?></p>
+					<p><?php echo $result[9]["l_name"]?></p>
+					<p><?php echo $result[10]["l_name"]?></p>
+					<p><?php echo $result[11]["l_name"]?></p>
+					
+		</label>
 
-				<label for="chk4" class="div_1 div_css">
-				<input type="radio" name="chk" id="chk4" value="4">
-					<h3>다이어트 챌린지</h3>
+		<input type="radio" name="chk" id="chk4" value="<?php echo $result[12]["c_id"] ?>">
+			<label for="chk4" class="div_1">
+				<h3><?php echo $result[12]["c_name"]?></h3>
 					<br>
-					물 2리터 이상 마시기 0/1
+					<p><?php echo $result[12]["l_name"]?></p>
+					<p><?php echo $result[13]["l_name"]?></p>
+					<p><?php echo $result[14]["l_name"]?></p>
+					<p><?php echo $result[15]["l_name"]?></p>
+		
+		</label>
+		<br>
+		<input type="radio" name="chk" id="chk5" value="<?php echo $result[16]["c_id"] ?>">
+			<label for="chk5" class="div_1">
+				<h3><?php echo $result[16]["c_name"]?></h3>
 					<br>
-					매끼 단백질 섭취 0/1
-					<br>
-					플랭크 30~40초 5세트 하기 0/1
-					<br>
-					하루 10000보 걷기
-				</label>
-			<br>
-			<label for="chk5" class="div_1 div_css">
-			<input type="radio" name="chk" id="chk5" value="5">
-					<h3>갓생살기</h3> 
-					<br>
-					하루 sns 금지 0/1
-					<br>
-					매일 3000원 저금하기 0/1
-					<br>
-					오후 11시전 취침 0/1
-					<br>
-					채식 하루 도전 0/1
-			</label>	
-			<footer>
-				<button class="button_yes div_css" type="submit">확인</button>
-				<button class="button_no div_css"><a class="a_button" href="../project1/list/main.php">취소</a></button>
-			</footer>
+					<p><?php echo $result[16]["l_name"]?></p>
+					<p><?php echo $result[17]["l_name"]?></p>
+					<p><?php echo $result[18]["l_name"]?></p>
+					<p><?php echo $result[19]["l_name"]?></p>
+			
+		</label>
+	
+		<footer>
+			<button class="button_yes div_css" type="submit">확인</button>
+			<button class="button_no div_css"><a class="a_button" href="../project1/list/main.php">취소</a></button>
+		</footer>
 	</div>	
-
 </form>	
 </body>
 </html>

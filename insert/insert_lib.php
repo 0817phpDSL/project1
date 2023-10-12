@@ -1,6 +1,6 @@
 <?php
 function my_db_conn( &$conn ){
-	$db_host = "localhost"; // host 
+	$db_host = "192.168.0.142"; // host 
 	$db_user = "team3"; // user
 	$db_pw = "team3"; // pw
 	$db_name = "todolist"; // DB name 
@@ -24,6 +24,8 @@ try{
 	return false;
 }
 }
+
+
  // ------------------------------------
     // 함수명        : db_destroy_conn
     // 기능          : DB destroy
@@ -34,28 +36,54 @@ function db_destroy_conn(&$conn){
 	$conn=null;
 }
 
+
 function db_select_chal_conn(&$conn, &$arr_param) {
 try{
 $sql = 
 	" SELECT DISTINCT "
 	." c_name "
-	." l_name " 
+	." ,l_name " 
+	." ,c_id "
 	." FROM "
 	." chal_info "
-	." WHERE "
-	." c_id = :c_id "
 	;
-$arr_ps = [
-	":c_id" => $arr_param["c_id"]
-];
+
+// $arr_ps = [
+// 	":c_id" => $arr_param["c_id"]
+// ];
 $stmt= $conn->prepare($sql);
-$stmt->execute($arr_ps);
+$stmt->execute();
 $result=$stmt->fetchAll();
 
 return $result;
 }
 catch(Exception $e){
+	echo $e->getMessage();
 	return false;
 }
 }
+
+
+function db_insert_create_at(&$conn, &$arr_post) {
+	$sql = 
+	" INSERT INTO create_information ( "
+	." c_id "
+	." ) "
+	." VALUES ( "
+	." :c_id "
+	." ) "
+	;
+		$arr_ps =[
+		":c_id" => $arr_post["c_id"]
+		];
+try{
+		$stmt=$conn->prepare($sql);
+		$result=$stmt->execute($arr_ps);
+		return $result; //결과 리턴
+	} catch (Exception $e){
+	return false; //예외발생 : false 리턴
+}
+}
+
+
 ?>
