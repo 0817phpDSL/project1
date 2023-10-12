@@ -2,6 +2,13 @@
 <?php
 require_once("insert_lib.php");
 
+try{
+	// DB접속
+	if(!my_db_conn($conn)){
+		throw new exception ("DB Error : PDO Instance")
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ko">

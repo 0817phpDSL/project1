@@ -1,6 +1,7 @@
 <!-- xcopy D:\workspace\project1 C:\Apache24\htdocs\project1 /E /Y -->
 <?php
 require_once("com_lib.php"); // DB 라이브러리
+require_once("../list/bar_lib.php");
 // require_once("")
 // DB connect
 $conn = null; // DB 커넥션 변수
@@ -93,7 +94,7 @@ finally {
 <body>
     <?php
     require_once("../list/header.html");
-    require_once("../list/challenge_bar.html");
+    require_once("../list/challenge_bar.php");
     require_once("../list/status.html");
     // var_dump($result);
     ?>

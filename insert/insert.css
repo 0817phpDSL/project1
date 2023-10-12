@@ -14,8 +14,9 @@
 	width: 1600px;
 	height:1300px;
 	background-color: #F2F4F7;
-	border-radius:20px 0px 0px 20px;
+	border-radius:50px 0px 0px 50px;
 	padding-left: 250px;
+	margin-top: 80px;
 }
 .div_css{
 	height: 200px;
