@@ -5,6 +5,9 @@ require_once("../list/bar_lib.php");
 // require_once("")
 // DB connect
 $conn = null; // DB 커넥션 변수
+
+$list_cnt = 9; // 한 페이지 최대 표시 수
+$page_num = 1; // 페이지 번호 초기화
 try {
        // DB 접속
        if (!my_db_conn($conn)) {
@@ -12,8 +15,47 @@ try {
         //아규먼트로 에러 메세지를 출력
         throw new Exception("DB Error : PDO instance"); // 강제 예외 발생 : DB Instance
         }
+
+    // ----------------------------
+    // 페이징 처리 / 페이지 세팅 하기 
+    // ----------------------------
+    // 총 게시글 수 검색
+    $board_cnt = db_select_cnt($conn);
+    if ($board_cnt === false) {
+        throw new Exception("DB Error : SELECT Count");
+    }
+
+    // 최대 페이지 개수 = (올림) ceil(게시글 개수(27) / 페이지 개수(5))
+    $max_page_num = ceil($board_cnt / $list_cnt);
+
+    // GET Method 확인
+    if(isset($_GET["page"])) {
+        $page_num = $_GET["page"]; // 유저가 보내온 페이지 세팅
+    }
+     // 오프셋 계산
+    $offset = ($page_num - 1) * $list_cnt;
+
+     // 이전 버튼
+     $prev_page_num = $page_num - 1;
+     if($prev_page_num === 0) {
+         $prev_page_num = 1;
+     }
+
+     // 다음 버튼
+     $next_page_num = $page_num + 1;
+     if($next_page_num > $max_page_num) {
+         $next_page_num = $max_page_num;
+     }
+
+    // DB 조회시 사용할 데이터 배열 생성
+    $arr_param = [
+    "list_cnt" => $list_cnt
+    ,"offset" => $offset
+    ];
+
+
         // 리스트 조회
-        $result = db_select_create_information($conn);
+        $result = db_select_create_information($conn, $arr_param);
         if(!$result) {
             // Select 에러
             throw new Exception("DB Error : SELECT"); // 강제 예외 발생 : SELECT board
@@ -126,6 +168,30 @@ finally {
         <?php
             }
         ?>
+    </div>
+    <div class = "page_section">
+    <!-- 이전 페이지 버튼 -->
+    <a class = "page_prev_button" href="/project1/detail/complete.php/?page=<?php echo $prev_page_num ?>"><</a>
+    <!-- $i=1, 1이 증가하면서 최대 페이지수까지만 반복 -->
+    <?php
+            for($i = 1; $i <= $max_page_num; $i++) {
+
+
+            // 현재 페이지에 활성화
+            if ((int)$page_num === $i) {
+            ?>
+             <!-- a : 페이지 표시 버튼 -->
+            <a class="act_bbg" href="/project1/detail/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <?php
+            } else {
+            ?>
+            <a class="bbg" href="/project1/detail/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <?php
+            }
+            }   
+    ?>
+    <!-- 다음 페이지 버튼 -->
+    <a class = "page_next_button" href="/project1/detail/complete.php/?page=<?php echo $next_page_num ?>">></a>
     </div>
         </section>
 </body>

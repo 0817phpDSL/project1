@@ -1,6 +1,36 @@
 <?php
+
+    // ------------------------------------
+    // 함수명        : db_select_cnt
+    // 기능          : board count 조회
+    // 파라미터      : PDO    &$conn
+    // 리턴          : INT / false
+    // ------------------------------------
+
+
+    function db_select_cnt(&$conn) {
+
+        $sql = 
+        " SELECT ".
+        " count(create_id) cnt ".
+        " FROM ".
+        " create_information ".
+        " WHERE ".
+        " c_com_at is not null ";
+    
+        try {
+            $stmt = $conn->query($sql);
+            $result = $stmt->fetchAll();
+            return (int)$result[0]["cnt"]; //정상 : 쿼리 결과 리턴
+        }
+        catch(Exception $e) {
+            return false; // 예외발생 : false 리턴
+    
+        }
+    }
+
 // 리스트 함수
-function db_select_create_information(&$conn) {
+function db_select_create_information(&$conn, &$arr_param) {
 try {
     $sql =
     " SELECT DISTINCT
@@ -12,10 +42,17 @@ try {
 FROM create_information ci
     LEFT OUTER JOIN chal_info ch
         ON ci.c_id = ch.c_id
-WHERE ci.c_com_at IS NOT NULL "
- ;
+WHERE ci.c_com_at IS NOT NULL
+LIMIT :list_cnt
+OFFSET :offset ";
+
+$arr_ps = [
+    ":list_cnt" => $arr_param["list_cnt"]
+    ,":offset" => $arr_param["offset"]
+];
+
 $stmt = $conn->prepare($sql);
-$stmt->execute();
+$stmt->execute($arr_ps);
 $result = $stmt->fetchAll();
 return $result; // 정상 : 쿼리 결과 리턴
 } catch(Exception $e) {
