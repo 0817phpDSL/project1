@@ -1,7 +1,8 @@
 <!-- xcopy D:\workspace\project1 C:\Apache24\htdocs\project1 /E /Y -->
 <?php
-require_once("com_lib.php"); // DB 라이브러리
-require_once("../list/bar_lib.php");
+define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); //웹 서버
+require_once(ROOT. "lib/com_lib.php"); // DB 라이브러리
+require_once(ROOT. "lib/bar_lib.php"); // DB 라이브러리
 // require_once("")
 // DB connect
 $conn = null; // DB 커넥션 변수
@@ -136,9 +137,9 @@ finally {
 </head>
 <body>
     <?php
-    require_once("../list/header.html");
-    require_once("../list/status.html");
-    require_once("../list/challenge_bar.php");
+    require_once(ROOT."html/header.html");
+    require_once(ROOT."html/status.html");
+    require_once(ROOT."challenge_bar.php");
     // var_dump($result);
     ?>
     <section class="section-in">
