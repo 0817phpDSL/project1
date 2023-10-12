@@ -81,24 +81,25 @@ finally {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <link rel="stylesheet" href="complete.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../list/header.css">
-    <link rel="stylesheet" href="../list/challenge_bar.css">
     <link rel="stylesheet" href="../list/status.css">
-    <link rel="stylesheet" href="complete.css">
+    <link rel="stylesheet" href="../list/challenge_bar.css">
+    
+    
 </head>
 <body>
     <?php
     require_once("../list/header.html");
-    require_once("../list/challenge_bar.php");
     require_once("../list/status.html");
+    require_once("../list/challenge_bar.php");
     // var_dump($result);
     ?>
-    <main class="list_com_main">
+    <section class="section-in">
     <div class="list_section">
         <?php
             foreach($data as $item){
@@ -126,6 +127,6 @@ finally {
             }
         ?>
     </div>
-    </main>
+        </section>
 </body>
 </html>
