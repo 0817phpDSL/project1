@@ -1,6 +1,8 @@
 <!-- xcopy D:\workspace\project1 C:\Apache24\htdocs\project1 /E /Y -->
 <?php
-require_once("insert_lib.php");
+define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); //웹 서버
+require_once(ROOT."lib/insert_lib.php"); // DB 라이브러리
+
 $conn=null;
 try{
 	// DB접속
@@ -59,19 +61,20 @@ if($http_method === "POST"){
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="insert.css">
-	<link rel="stylesheet" href="../list/header.css">
+	<link rel="stylesheet" href="css/insert.css">
+	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/status.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../list/status.css">
+
 <title>Document</title>
 	
 </head>
 <body>
 	<?php
-	require_once("../list/header.html");
-	require_once("../list/status.html");
+	require_once(ROOT."html/header.html");
+	require_once(ROOT."html/status.html");
 	?>
 
 <form class="boxed" action="/project1/insert/insert.php" method="post">
