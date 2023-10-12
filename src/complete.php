@@ -125,13 +125,13 @@ finally {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="complete.css">
+    <link rel="stylesheet" href="css/complete.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../list/header.css">
-    <link rel="stylesheet" href="../list/status.css">
-    <link rel="stylesheet" href="../list/challenge_bar.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/status.css">
+    <link rel="stylesheet" href="css/challenge_bar.css">
     
     
 </head>
@@ -163,7 +163,7 @@ finally {
                             }
                         ?>
                         </ul>
-                        <a class="list_delete" href=""><img src="../src/icon_trash_.png" alt="" width="20"></a>
+                        <a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a>
                     </div>
                 </div>
         <?php
@@ -172,7 +172,7 @@ finally {
     </div>
     <div class = "page_section">
     <!-- 이전 페이지 버튼 -->
-    <a class = "page_prev_button" href="/project1/detail/complete.php/?page=<?php echo $prev_page_num ?>"><</a>
+    <a class = "page_prev_button" href="/project1/src/complete.php/?page=<?php echo $prev_page_num ?>"><</a>
     <!-- $i=1, 1이 증가하면서 최대 페이지수까지만 반복 -->
     <?php
             for($i = 1; $i <= $max_page_num; $i++) {
@@ -182,17 +182,17 @@ finally {
             if ((int)$page_num === $i) {
             ?>
              <!-- a : 페이지 표시 버튼 -->
-            <a class="act_bbg" href="/project1/detail/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a class="act_bbg" href="/project1/src/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
             <?php
             } else {
             ?>
-            <a class="bbg" href="/project1/detail/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a class="bbg" href="/project1/src/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
             <?php
             }
             }   
     ?>
     <!-- 다음 페이지 버튼 -->
-    <a class = "page_next_button" href="/project1/detail/complete.php/?page=<?php echo $next_page_num ?>">></a>
+    <a class = "page_next_button" href="/project1/src/complete.php/?page=<?php echo $next_page_num ?>">></a>
     </div>
         </section>
 </body>

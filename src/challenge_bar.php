@@ -26,7 +26,7 @@ try {
 
 ?>
 
-<link rel="stylesheet" href="/css/challenge_bar.css">
+<link rel="stylesheet" href="css/challenge_bar.css">
 <div class="challenge_bar box1">
     <form action="/project1/detail/in-progress.php" method="get">
         <header class="challenge_header">
