@@ -35,14 +35,15 @@ function db_select_challenge_bar(&$conn) {
 	try {
 		$sql = 
         " SELECT "
-        ." cr.create_id, ch.c_name "
+        ." cr.create_id, ch.c_name, cr.c_com_at "
         ." FROM "
         ." create_information cr "
         ." JOIN "
         ." chal_info ch "
         ." ON "
         ." cr.c_id = ch.c_id "
-        ." GROUP BY cr.create_id ";
+        ." GROUP BY cr.create_id "
+        ." ORDER BY cr.c_com_at ";
 
 
 		$stmt = $conn->query($sql);

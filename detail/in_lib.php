@@ -4,7 +4,8 @@ function db_select_list(&$conn, &$arr_get) {
 	try {
 		$sql =
         " SELECT "
-        ." cr.create_id, cr.c_id, ch.l_id, ch.l_name "
+        ." cr.create_id, cr.c_id, ch.l_id, ch.l_name
+        , cr.l_com_at1, cr.l_com_at2, cr.l_com_at3, cr.l_com_at4, cr.c_com_at "
         ." FROM create_information cr "
         ." JOIN "
         ." chal_info ch "
@@ -80,3 +81,26 @@ function db_complete_list(&$conn, &$arr_post) {
         return false; // 예외 발생 : false 리턴
     }
 }
+
+// function db_complete_at(&$conn, &$c_com) {
+//     try{
+//         $sql = 
+//         " UPDATE "
+//         ." create_information "
+//         ." SET "
+//         ." c_com_at = NOW() "
+//         ." WHERE "
+//         ." create_id = :create_id ";
+
+//         $arr_ps = [
+//             ":create_id" => $c_com["create_id"]
+//         ];
+
+//         $stmt = $conn->prepare($sql);
+//         $stmt->execute($arr_ps);
+//         $result = $stmt->fetchAll();
+//         return $result; // 정상 : 쿼리 결과 리턴
+//     } catch(Exception $e) {
+//         return false; // 예외 발생 : false 리턴
+//     }
+// }

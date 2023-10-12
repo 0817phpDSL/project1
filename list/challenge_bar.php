@@ -35,9 +35,14 @@ try {
         </header>
         <section>
             <?php
-            foreach($challenge_bar as $item) {  ?>
-                    <button class="challenge_list_select challenge_list_shadow" name="create_id" value="<?php echo $item["create_id"];?>"><?php echo $item["c_name"]; ?></button> <br>
+            foreach($challenge_bar as $item) {
+                if($item["c_com_at"] == null) { ?>
+                    <button class="challenge_list_not_select challenge_list_shadow" name="create_id" value="<?php echo $item["create_id"];?>"><?php echo $item["c_name"]; ?></button> <br>
                 <?php }
+                if($item["c_com_at"] != "") { ?>
+                    <button class="challenge_list_select_2 challenge_list_shadow" name="create_id" value="<?php echo $item["create_id"];?>"><?php echo $item["c_name"]; ?></button> <br>
+                <?php }
+            }
             ?>
         </section>
     </form>

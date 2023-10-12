@@ -3,6 +3,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/list/bar_lib.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/detail/in_lib.php");
 
+$c_com = [];
 
 if(!my_db_conn($conn)) {
 	// DB Instance 에러
@@ -15,15 +16,14 @@ if($http_method === "POST") {
 	try{
 		$arr_post = $_POST;
 		$arr_post["l_id"] = isset($arr_post["l_id"]) ? $arr_post["l_id"] : "";
-		print_r($arr_post);
 
 		$arr_get = $arr_post;
 
 		$com_list = db_complete_list($conn, $arr_post);
 		if($com_list === false) {
 		throw new Exception("complete_list Error");
-
 		}
+
 		$conn->commit();
 		header("Location: in-progress.php");
 		exit;
@@ -41,7 +41,6 @@ $list = db_select_list($conn, $arr_get);
 if($list === false) {
 	// DB Instance 에러
 	throw new Exception("list Error");
-
 }
 
 $list_name = db_select_list_name($conn, $arr_get);
@@ -49,7 +48,29 @@ if($list_name === false) {
 	throw new Exception("list_name Error");
 }
 
+foreach($list as $value) {
+	if($value["l_com_at1"] != "" && $value["l_com_at2"] != "" && $value["l_com_at3"] != "" && $value["l_com_at4"] != "") {
+		$c_com = [ "create_id" => $value["create_id"]];
+	// 	try {
+	// 		if(db_complete_at($conn, $c_com) === false) {
+	// 			throw new Exception("complete_at Error");
 
+	// 			$conn->commit();
+	// 			header("Location: in-progress.php");
+	// 			exit;
+	// 		}
+	// 	} catch(Exception $e) {
+	// 		$conn->rollBack();
+	// 		echo $e->getMessage();
+	// 		exit;
+	// 	} finally {
+	// 		db_destroy_conn($conn);
+	// 	}
+	}
+}
+
+print_r($list);
+print_r($c_com["create_id"]);
 
 ?>
 
@@ -85,7 +106,32 @@ if($list_name === false) {
 			<?php
 			foreach($list as $item) { ?>
 			<input type="hidden" name="create_id" value="<?php echo $item["create_id"] ?>">
-			<button class="button-in" name="l_id" value="<?php echo $item["l_id"];?>"><p class="pro-menu" ><?php echo $item["l_name"] ?></p> <p class="pro-clear">1/1</p></button>
+			<?php
+			if($item["l_id"] == 1 && $item["l_com_at1"] != "") {
+			?>	<button class="button-com" name="l_id" value="<?php echo $item["l_id"];?>"><?php
+			} else if($item["l_id"] == 2 && $item["l_com_at2"] != "") {
+			?>	<button class="button-com" name="l_id" value="<?php echo $item["l_id"];?>"><?php
+			} else if($item["l_id"] == 3 && $item["l_com_at3"] != "") {
+			?>	<button class="button-com" name="l_id" value="<?php echo $item["l_id"];?>"><?php
+			} else if($item["l_id"] == 4 && $item["l_com_at4"] != "") {
+			?>	<button class="button-com" name="l_id" value="<?php echo $item["l_id"];?>"><?php
+			} else {
+			?>	<button class="button-in" name="l_id" value="<?php echo $item["l_id"];?>"><?php
+			}
+			?>
+			<p class="pro-menu" ><?php echo $item["l_name"] ?></p>
+			<p class="pro-clear"><?php if($item["l_id"] == 1 && $item["l_com_at1"] != "") {
+				echo "1/1";
+			} else if($item["l_id"] == 2 && $item["l_com_at2"] != "") {
+				echo "1/1";
+			} else if($item["l_id"] == 3 && $item["l_com_at3"] != "") {
+				echo "1/1";
+			} else if($item["l_id"] == 4 && $item["l_com_at4"] != "") {
+				echo "1/1";
+			} else {
+				echo "0/1";
+			} ?></p>
+		</button>
 		<?php } ?>
 			<a href=""><img class="trash" src="../src/trash.png" alt=""></a>
 		</form>

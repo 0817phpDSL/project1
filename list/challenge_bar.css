@@ -85,3 +85,19 @@
     background-color: transparent;
   }
   /* ----------------------------- */
+
+
+  .challenge_list_select_2 { /* 선택 */
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 90px;
+    margin-bottom: 10px;
+    border: 6px solid #FFE0E0;
+    background-image: url("../src/AurelionSol_0.jpg");
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+    color: #fff;
+    border-radius: 10px;
+}
