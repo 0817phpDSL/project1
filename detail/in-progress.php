@@ -3,37 +3,48 @@
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/list/bar_lib.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/detail/in_lib.php");
 
-$c_com = [];
 
 if(!my_db_conn($conn)) {
 	// DB Instance 에러
 	throw new Exception("DB Error : PDO Instance");
 }
 $http_method = $_SERVER["REQUEST_METHOD"];
+if($http_method === "GET") {
 	$arr_get = $_GET;
 	$arr_get["create_id"] = isset($arr_get["create_id"]) ? $arr_get["create_id"] : "1";
-if($http_method === "POST") {
+
+} else {
 	try{
 		$arr_post = $_POST;
 		$arr_post["l_id"] = isset($arr_post["l_id"]) ? $arr_post["l_id"] : "";
 
 		$arr_get = $arr_post;
 
+		$conn->beginTransaction();
 		$com_list = db_complete_list($conn, $arr_post);
 		if($com_list === false) {
 		throw new Exception("complete_list Error");
 		}
 
-		$conn->commit();
-		header("Location: in-progress.php");
-		exit;
+		$com_check = db_select_complete_check($conn, $arr_post);
+		if($com_check === false) {
+			throw new Exception("complete_check Error");
+		}
 
+		// foreach($com_check as $value) {
+		// 	if($value["l_com_at1"] != "" && $value["l_com_at2"] != "" && $value["l_com_at3"] != "" && $value["l_com_at4"] != "") {
+		// 		$c_com = ["create_id" => $value["create_id"]];
+		// 		if(db_complete_at($conn, $c_com) === false) {
+		// 			throw new Exception("complete_at Error");
+		// 		}
+		// 	}
+		// }
+
+		$conn->commit();
 	} catch(Exception $e) {
 		$conn->rollBack();
 		echo $e->getMessage(); // Exception 메세지 출력
 		exit;
-	} finally {
-		db_destroy_conn($conn); // DB 파기
 	}
 }
 
@@ -48,29 +59,6 @@ if($list_name === false) {
 	throw new Exception("list_name Error");
 }
 
-foreach($list as $value) {
-	if($value["l_com_at1"] != "" && $value["l_com_at2"] != "" && $value["l_com_at3"] != "" && $value["l_com_at4"] != "") {
-		$c_com = [ "create_id" => $value["create_id"]];
-	// 	try {
-	// 		if(db_complete_at($conn, $c_com) === false) {
-	// 			throw new Exception("complete_at Error");
-
-	// 			$conn->commit();
-	// 			header("Location: in-progress.php");
-	// 			exit;
-	// 		}
-	// 	} catch(Exception $e) {
-	// 		$conn->rollBack();
-	// 		echo $e->getMessage();
-	// 		exit;
-	// 	} finally {
-	// 		db_destroy_conn($conn);
-	// 	}
-	}
-}
-
-print_r($list);
-print_r($c_com["create_id"]);
 
 ?>
 
@@ -133,8 +121,10 @@ print_r($c_com["create_id"]);
 			} ?></p>
 		</button>
 		<?php } ?>
-			<a href=""><img class="trash" src="../src/trash.png" alt=""></a>
-		</form>
+	</form>
+	<form action="../delete/delete.php" method="get">
+		<button onclick="location.href('../delete/delete.php')" class="trash"></button>
+	</form>
 	</section>
 </body>
 </html>

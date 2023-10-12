@@ -23,7 +23,7 @@
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 0px;
+	height: 500px;
 }
 
 .create_at {
@@ -80,11 +80,14 @@
 }
 
 .trash {
+	background-image: url(../src/trash.png);
+	background-size: cover;
 	width: 50px;
 	height: 50px;
 	position: absolute;
 	right: 60px;
 	bottom: 40px;
+	border: none;
 }
 
 .button-in:active {
@@ -105,4 +108,8 @@
 	background: url("../src/in_progress.jpg");
 	background-size: cover;
 	opacity: 0.8;
+}
+
+button {
+	cursor: pointer;
 }
