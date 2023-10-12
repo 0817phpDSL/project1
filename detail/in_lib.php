@@ -129,3 +129,43 @@ function db_complete_at(&$conn, &$c_com) {
         return false; // 예외 발생 : false 리턴
     }
 }
+
+function db_complete_num(&$conn, &$arr_get) {
+    try{
+        $sql = 
+        " SELECT "
+        ." ( (case "
+        ."        when ci.l_com_at1 IS NOT NULL then 25 "
+        ."        ELSE 0 "
+        ."    END) "
+        ."    + "
+        ."    (case "
+        ."        when ci.l_com_at2 IS NOT NULL then 25 "
+        ."        ELSE 0 "
+        ."    END) "
+        ."    + "
+        ."    (case "
+        ."        when ci.l_com_at3 IS NOT NULL then 25 "
+        ."        ELSE 0 "
+        ."    END) "
+        ."    + "
+        ."    (case "
+        ."        when ci.l_com_at4 IS NOT NULL then 25 "
+        ."        ELSE 0 "
+        ."    END)) AS per "
+        ." FROM create_information ci "
+        ." WHERE "
+        ." create_id = :create_id ";
+
+        $arr_ps = [
+            ":create_id" => $arr_get["create_id"]
+        ];
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        return false; // 예외 발생 : false 리턴
+    }
+}

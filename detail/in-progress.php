@@ -3,6 +3,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/list/bar_lib.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/project1/detail/in_lib.php");
 
+$com = [];
 
 if(!my_db_conn($conn)) {
 	// DB Instance 에러
@@ -59,6 +60,11 @@ if($list_name === false) {
 	throw new Exception("list_name Error");
 }
 
+$list_per = db_complete_num($conn, $arr_get);
+if($list_per === false) {
+	throw new Exception("list_name Error");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -71,14 +77,14 @@ if($list_name === false) {
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 
-	<!-- <link rel="stylesheet" href="../list/header.css"> -->
+	<link rel="stylesheet" href="../list/header.css">
 	<link rel="stylesheet" href="../list/status.css">
 	<link rel="stylesheet" href="../list/challenge_bar.css">
 	<title>Document</title>
 </head>
 <body>
 	<?php
-    // require_once("../list/header.html");
+    require_once("../list/header.html");
     require_once("../list/status.html");
 	require_once("../list/challenge_bar.php");
     ?>
@@ -89,7 +95,7 @@ if($list_name === false) {
 			foreach($list_name as $tit) { ?>
 			<p class="ch-name"><?php echo $tit["c_name"]; ?></p>
 			<?php } ?>
-			<progress class="progress" value="50" max="100"></progress>
+			<progress class="progress" value="<?php echo $list_per[0]["per"]; ?>" max="100"></progress>
 			<?php
 			foreach($list as $item) { ?>
 			<input type="hidden" name="create_id" value="<?php echo $item["create_id"] ?>">

@@ -109,7 +109,9 @@
 	background-size: cover;
 	opacity: 0.8;
 }
-
+.button-com>p {
+	color: #fff;
+}
 button {
 	cursor: pointer;
 }
