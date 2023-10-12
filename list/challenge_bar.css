@@ -5,11 +5,12 @@
     font-family: 'Nanum Pen Script', cursive;
     font-family: 'Noto Sans KR', sans-serif;
     color: #424242;
+    box-sizing: border-box;
 }
 /* 챌린지 바 */
 .challenge_bar {
     width: 260px;
-    height: 800px;
+    height: 980px;
     float: right;
 
     padding: 20px;
