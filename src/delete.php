@@ -75,7 +75,7 @@ $conn = null;
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./delete.css">
+	<link rel="stylesheet" href="css/delete.css">
 	<title>Delete</title>
 </head>
 
@@ -95,10 +95,10 @@ $conn = null;
 				</tr>
 				<tr>
 					<td>
-					<form action="/project1/delete/delete.php" method="post">
+					<form action="/project1/src/delete.php" method="post">
 						<input type="hidden" name="id" value="">
 						<button class="btn1" type='submit'>ㅇㅇ..</button>
-						<a class="btn2" href="/project1/detail.php/">ㄴㄴ..</a>
+						<a class="btn2" href="/project1/src/detail.php/">ㄴㄴ..</a>
 					</form>
 					</td>
 				</tr>
