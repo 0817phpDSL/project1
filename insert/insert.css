@@ -1,0 +1,122 @@
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+	font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #424242;
+}
+.container{
+	border: 1px solid #F2F4F7;
+	float:right;
+	width: 1600px;
+	height:1300px;
+	background-color: #F2F4F7;
+	border-radius:50px 0px 0px 50px;
+	padding-left: 250px;
+	margin-top: 80px;
+}
+.div_css{
+	height: 200px;
+	box-sizing: border-box;
+	filter:drop-shadow(2px 4px 6px gray);
+}
+.create_at{
+	margin:20px;
+}
+.div_1{
+	
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	padding:10px;
+	background-color:#fff;
+	text-align: left;
+	float:left;
+	margin:30px ;	
+}
+footer{
+	position:fixed;
+	bottom: 10px;
+	right:200px;
+	line-height: 15px;
+}
+button,a{
+	margin:10px;
+}
+.button_no{
+	background-color:#E4E4E4;
+	border:1px solid #E4E4E4;
+	width:80px;
+	height:40px;
+	border-radius: 5px 5px 5px 5px;
+	filter:drop-shadow(2px 4px 6px gray);
+	text-decoration: none;
+	color:black;
+	cursor:pointer;
+}
+.button_yes{
+	background-color:#E4E4E4;
+	border:none;
+	width:80px;
+	height:40px;
+	border-radius: 5px 5px 5px 5px;
+	filter:drop-shadow(2px 4px 6px gray);
+	cursor: pointer;
+	font-weight: light;
+}
+.div_css:active{
+	background-color: #FFDEAC;
+}
+.div_css:focus{
+	border: 5px solid #FFDEAC;
+}
+
+/* 
+.div_2{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	background-color:#fff;
+	text-align: left;
+	clear:both;
+	margin:30px ;
+}
+.div_3{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	float:left;
+	background-color:#fff;
+	text-align: left;
+	margin:30px;
+}
+.div_4{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	clear:both;
+	background-color:#fff;
+	text-align:left;
+	margin:30px;
+}
+.div_5{
+	border:1px solid #F2F4F7;
+	border-radius: 10px 10px 10px 10px;
+	width:550px;
+	margin:15px;
+	padding:10px;
+	float: left;
+	background-color:#fff;
+	text-align: left;
+	margin:30px;
+} */
+
