@@ -31,14 +31,14 @@ if($http_method === "GET") {
 			throw new Exception("complete_check Error");
 		}
 
-		// foreach($com_check as $value) {
-		// 	if($value["l_com_at1"] != "" && $value["l_com_at2"] != "" && $value["l_com_at3"] != "" && $value["l_com_at4"] != "") {
-		// 		$c_com = ["create_id" => $value["create_id"]];
-		// 		if(db_complete_at($conn, $c_com) === false) {
-		// 			throw new Exception("complete_at Error");
-		// 		}
-		// 	}
-		// }
+		foreach($com_check as $value) {
+			if($value["l_com_at1"] != "" && $value["l_com_at2"] != "" && $value["l_com_at3"] != "" && $value["l_com_at4"] != "") {
+				$c_com = ["create_id" => $value["create_id"]];
+				if(db_complete_at($conn, $c_com) === false) {
+					throw new Exception("complete_at Error");
+				}
+			}
+		}
 
 		$conn->commit();
 	} catch(Exception $e) {
@@ -72,14 +72,14 @@ if($list_name === false) {
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 
-	<!-- <link rel="stylesheet" href="../list/header.css"> -->
+	<link rel="stylesheet" href="../list/header.css">
 	<link rel="stylesheet" href="../list/status.css">
 	<link rel="stylesheet" href="../list/challenge_bar.css">
 	<title>Document</title>
 </head>
 <body>
 	<?php
-    // require_once("../list/header.html");
+    require_once("../list/header.html");
     require_once("../list/status.html");
 	require_once("../list/challenge_bar.php");
     ?>
@@ -123,7 +123,7 @@ if($list_name === false) {
 		<?php } ?>
 	</form>
 	<form action="../delete/delete.php" method="get">
-		<button onclick="location.href('../delete/delete.php')" class="trash"></button>
+		<button  onclick="location.href('../delete/delete.php')" class="trash"></button>
 	</form>
 	</section>
 </body>
