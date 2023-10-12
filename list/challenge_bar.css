@@ -9,7 +9,7 @@
 /* 챌린지 바 */
 .challenge_bar {
     width: 260px;
-    height: 100vh;
+    height: 800px;
     float: right;
 
     padding: 20px;
@@ -22,6 +22,22 @@
     right: 0;
     background-color: white;
 }
+/* 챌린지 바 영역 */
+.challenge_bar_section {
+    height: 100%;
+}
+/* .inset_shadow {
+ 내부 그림자
+ position: absolute;
+ top: 0;
+ right: 0;
+
+ box-shadow: inset -1px -10px 8px -2px rgb(187, 187, 187);
+
+ width: 260px;
+ height: 800px;
+ background-color: transparent;
+} */
 /* 챌린지 타이틀 글자 */
 .challenge_title {
     display: inline-block;
