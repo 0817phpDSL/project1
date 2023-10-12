@@ -24,14 +24,14 @@ $conn = null;
 	$http_method = $_SERVER["REQUEST_METHOD"];
 
 	// method가 get일때. 게시글 조회하는 동작.
-	if($http_method === "GET") {
-		$create_id = isset($_GET["create_id"]) ? $_GET["create_id"] : "";
-		$page_flg = isset($_GET["page_flg"]) ? $_GET["page_flg"] : "";
+	// if($http_method === "GET") {
+	// 	$create_id = isset($_GET["create_id"]) ? $_GET["create_id"] : "";
+	// 	$page_flg = isset($_GET["page_flg"]) ? $_GET["page_flg"] : "";
 
-		$arr_param = [
-			"create_id" => $create_id
-		];
-		$result = db_select_boards_id($conn, $arr_param);
+		// $arr_param = [
+		// 	"create_id" => $create_id
+		// ];
+		// $result = db_select_boards_id($conn, $arr_param);
 
 		// 예외 처리
 		// if($result === false) {
@@ -42,16 +42,16 @@ $conn = null;
 		// }
 
 		// $item = $result[0];
-	} else {
-		$create_id = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
+	// } else {
+	// 	$create_id = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
 
-		// Transaction 시작
-		// $conn->beginTransaction();
+	// 	// Transaction 시작
+	// 	// $conn->beginTransaction();
 
-		$arr_param = [
-			"create_id" => $create_id
-		];
-	}
+	// 	$arr_param = [
+	// 		"create_id" => $create_id
+	// 	];
+	// }
 
 		// 예외 처리
 	// 	if(!db_delete_boards_id($conn, $arr_param)) {
@@ -98,7 +98,7 @@ $conn = null;
 					<form action="/project1/delete/delete.php" method="post">
 						<input type="hidden" name="id" value="">
 						<button class="btn1" type='submit'>ㅇㅇ..</button>
-						<a class="btn2" href="/project1/detail.php/?create_id=<?php echo $create_id; ?>">ㄴㄴ..</a>
+						<a class="btn2" href="/project1/detail.php/">ㄴㄴ..</a>
 					</form>
 					</td>
 				</tr>
