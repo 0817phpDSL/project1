@@ -74,7 +74,7 @@ if($http_method === "POST"){
 <body>
 	<?php
 	require_once(ROOT."html/header.html");
-	require_once(ROOT."html/status.html");
+	require_once(ROOT."status.php");
 	?>
 <section class="section-in">
 	<form class="boxed" action="/project1/insert/insert.php" method="post">
