@@ -142,7 +142,7 @@ finally {
     <?php
     require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
-	require_once(FILE_CHALLENGE);
+	// require_once(FILE_CHALLENGE);
     // var_dump($result);
     ?>
     <section class="section-in">
@@ -198,5 +198,8 @@ finally {
     <a class = "page_next_button button_shadow" href="/project1/src/complete.php/?page=<?php echo $next_page_num ?>">></a>
     </div>
         </section>
+        <?php
+        require_once(FILE_CHALLENGE);
+        ?>
 </body>
 </html>
