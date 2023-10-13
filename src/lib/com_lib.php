@@ -60,7 +60,7 @@ return false; // 예외발생 : false 리턴
 }
 }
 
-// db 완료된 리스트 조회
+// db 완료된 리스트 출력 함수
 function db_select_com_list(&$conn, &$arr_param) {
     try {
     $sql =
