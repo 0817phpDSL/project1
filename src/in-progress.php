@@ -2,7 +2,7 @@
 
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/");
 define("FILE_HEADER", ROOT."html/header.html");
-define("FILE_STATUS", ROOT."html/status.php");
+define("FILE_STATUS", ROOT."status.php");
 define("FILE_CHALLENGE", ROOT."challenge_bar.php");
 require_once(ROOT."lib/in_lib.php");
 require_once(ROOT."lib/bar_lib.php");
