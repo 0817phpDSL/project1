@@ -102,7 +102,6 @@ $in_progress_c_id = $arr_get["create_id"];
 	<?php
     require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
-	require_once(FILE_CHALLENGE);
     ?>
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
@@ -152,5 +151,8 @@ $in_progress_c_id = $arr_get["create_id"];
 		<button name="create_id" value="<?php echo $arr_get["create_id"]; ?>" onclick="location.href('../delete/delete.php')" class="trash"></button>
 	</form>
 	</section>
+	<?php
+	require_once(FILE_CHALLENGE);
+	?>
 </body>
 </html>
