@@ -166,10 +166,11 @@ finally {
                             }
                         ?>
                         </ul>
+                        <!-- 휴지통 버튼 -->
                         <form action="/project1/src/delete.php" method="GET">
                         <input type="hidden" name="page_flg" value="1">
                         <input type="hidden" name="create_id" value="<?php echo $item["create_id"]; ?>">
-                        <button type="submit"><a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a><button>
+                        <button type="submit" class="delete_button"><a class="list_delete" href=""></a><button>
                         </form>
                     </div>
                 </div>
