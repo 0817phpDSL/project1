@@ -16,13 +16,12 @@ require_once(ROOT."lib/delete_lib.php"); // DB관련 라이브러리
 $arr_get = [];
 
 $conn = null;
-
 // try {
 	if(!my_db_conn($conn)) {
 		throw new Exception("DB Error : PDO Instance");
 	}
 	
-	
+	print_r($_GET);
 	
 	
 	$http_method = $_SERVER["REQUEST_METHOD"];

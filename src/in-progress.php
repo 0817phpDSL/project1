@@ -2,7 +2,7 @@
 
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/");
 define("FILE_HEADER", ROOT."html/header.html");
-define("FILE_STATUS", ROOT."html/status.html");
+define("FILE_STATUS", ROOT."status.php");
 define("FILE_CHALLENGE", ROOT."challenge_bar.php");
 require_once(ROOT."lib/in_lib.php");
 require_once(ROOT."lib/bar_lib.php");
@@ -22,13 +22,13 @@ if(!my_db_conn($conn)) {
 
 $http_method = $_SERVER["REQUEST_METHOD"];
 if($http_method === "GET") {
-	$arr_get = $_GET;
-	$arr_get["create_id"] = isset($arr_get["create_id"]) ? $arr_get["create_id"] : "1";
+	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : "1";
 
 } else {
 	try{
-		$arr_post = $_POST;
-		$arr_post["l_id"] = isset($arr_post["l_id"]) ? $arr_post["l_id"] : "";
+		$arr_post = [];
+		$arr_post["create_id"] = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
+		$arr_post["l_id"] = isset($_POST["l_id"]) ? $_POST["l_id"] : "";
 
 		$arr_get = $arr_post;
 
@@ -82,6 +82,7 @@ if($list_created_at === false) {
 	throw new Exception("list_created_at Error");
 }
 
+$in_progress_c_id = $arr_get["create_id"];
 ?>
 
 <!DOCTYPE html>

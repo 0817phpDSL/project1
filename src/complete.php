@@ -57,7 +57,7 @@ try {
     ,"offset" => $offset
     ];
 
-
+//---------------------------------------------------------------------------
         // 리스트 조회
         $result = db_select_create_information($conn, $arr_param);
         if(!$result) {
@@ -166,7 +166,11 @@ finally {
                             }
                         ?>
                         </ul>
-                        <a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a>
+                        <form action="/project1/src/delete.php" method="GET">
+                        <input type="hidden" name="page_flg" value="1">
+                        <input type="hidden" name="create_id" value="<?php echo $item["create_id"]; ?>">
+                        <button type="submit"><a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a><button>
+                        </form>
                     </div>
                 </div>
         <?php
