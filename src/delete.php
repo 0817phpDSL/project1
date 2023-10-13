@@ -13,6 +13,8 @@ require_once(ROOT."lib/delete_lib.php"); // DB관련 라이브러리
 // $page_flg = [
 // 	"page_flg" => $page_flg
 // ];
+
+
 $arr_get = [];
 // 빈 배열로 선언해주고 시작해야됨.
 
@@ -29,10 +31,7 @@ $conn = null;
 
 	if($http_method === "GET") {
 		$arr_get = $_GET;
-		
-
-
-
+	
 		$result = db_select_boards_id($conn, $arr_get);
 	
 		// 예외 처리
@@ -120,12 +119,15 @@ $conn = null;
 		<table class="cancel_box" >
 				<tr>
 					<td>
-					
+						<?php echo $result[0]["c_name"]; ?>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<p>진행중완료 챌린지를 포기</p>
+						<p><?php if($result[0]["c_com_at"] === null) {
+							echo "진행중인";
+						 } else if($result[0]["c_com_at"] != null) {
+							echo "완료된"; } ?> 페이지를 삭제하시겠습니까?</p>
 					</td>
 				</tr>
 				<tr>
