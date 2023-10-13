@@ -70,7 +70,6 @@ form {
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	color: red;
 	line-height: 35px;
 	text-decoration: none;
 }
@@ -88,4 +87,9 @@ form {
 	right: 0px;
 	top: 0px;
 	line-height: 35px;
+	color: red;
+}
+
+button {
+	cursor: pointer;
 }

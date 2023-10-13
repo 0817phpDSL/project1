@@ -50,13 +50,17 @@ function db_destroy_conn(&$conn) {
 function db_select_boards_id(&$conn, &$arr_get) {
 	$sql =
 	" SELECT "
-	."		create_id "
-	."		,c_com_at "
-	." FROM "
-	."		create_information "
-	." WHERE "
-	."		create_id = :create_id "
-	;
+	." 		ci.c_name, "
+	." 		cr.create_id, " 
+	." 		cr.c_com_at " 
+	." FROM " 
+	." 		create_information cr "
+	." JOIN "
+	." 		chal_info ci "
+	." ON "
+	." 		cr.c_id = ci.c_id "
+	." AND "
+	." 		cr.create_id = :create_id " ;
 
 	$arr_ps = [
 		":create_id" => $arr_get["create_id"]
