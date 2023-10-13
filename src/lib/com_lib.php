@@ -16,7 +16,7 @@
         " FROM ".
         " create_information ".
         " WHERE ".
-        " c_com_at is not null ";
+        " c_com_at is not null and c_deleted_at IS NULL ";
     
         try {
             $stmt = $conn->query($sql);
@@ -29,7 +29,7 @@
         }
     }
 
-// 리스트 함수
+// 리스트 조회 함수
 function db_select_create_information(&$conn, &$arr_param) {
 try {
     $sql =
@@ -39,12 +39,12 @@ try {
     ,date(ci.c_created_at) c_created_at
     ,date(ci.c_com_at) c_com_at
     ,ch.c_name
-FROM create_information ci
-    LEFT OUTER JOIN chal_info ch
+    FROM create_information ci
+    JOIN chal_info ch
         ON ci.c_id = ch.c_id
-WHERE ci.c_com_at IS NOT NULL
-LIMIT :list_cnt
-OFFSET :offset ";
+    WHERE ci.c_com_at IS NOT NULL and ci.c_deleted_at IS NULL
+    LIMIT :list_cnt
+    OFFSET :offset ";
 
 $arr_ps = [
     ":list_cnt" => $arr_param["list_cnt"]
@@ -59,6 +59,7 @@ return $result; // 정상 : 쿼리 결과 리턴
 return false; // 예외발생 : false 리턴
 }
 }
+
 // db 완료된 리스트 조회
 function db_select_com_list(&$conn, &$arr_param) {
     try {

@@ -57,7 +57,7 @@ try {
     ,"offset" => $offset
     ];
 
-
+//---------------------------------------------------------------------------
         // 리스트 조회
         $result = db_select_create_information($conn, $arr_param);
         if(!$result) {
@@ -121,8 +121,6 @@ catch(Exception $e) {
 finally {
         db_destroy_conn($conn); //DB 파기
     }
-
-    print_r($item);
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -142,7 +140,7 @@ finally {
 </head>
 <body>
     <?php
-    // require_once(FILE_HEADER);
+    require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
 	// require_once(FILE_CHALLENGE);
     // var_dump($result);
@@ -170,7 +168,8 @@ finally {
                         </ul>
                         <form action="/project1/src/delete.php" method="GET">
                         <input type="hidden" name="page_flg" value="1">
-                        <button name="create_id" value="<?php $result[0]["create_id"]; ?>"><a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a><button>
+                        <input type="hidden" name="create_id" value="<?php echo $item["create_id"]; ?>">
+                        <button type="submit"><a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a><button>
                         </form>
                     </div>
                 </div>
