@@ -14,7 +14,7 @@ function db_challenge_first(&$conn) {
         ." AND "
         ." cr.c_deleted_at IS NULL "
         ." GROUP BY cr.create_id "
-        ." ORDER BY cr.c_com_at "
+        ." ORDER BY cr.c_created_at DESC"
         ." LIMIT 1 ";
 
 
