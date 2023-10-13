@@ -63,7 +63,6 @@ if($http_method === "POST"){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/insert.css">
 	<link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/status.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
@@ -74,7 +73,7 @@ if($http_method === "POST"){
 <body>
 	<?php
 	require_once(ROOT."html/header.html");
-	require_once(ROOT."status.php");
+	
 	?>
 <section class="section-in">
 	<form class="boxed" action="/project1/insert/insert.php" method="post">
@@ -136,7 +135,7 @@ if($http_method === "POST"){
 	
 		<footer>
 			<button class="button_yes div_css" type="submit">확인</button>
-			<button class="button_no div_css"><a class="a_button" href="in-progress.php">취소</a></button>
+			<button class="button_no div_css"><a class="button_no" href="in-progress.php">취소</a></button>
 			</footer>
 	</form>	
 </section>

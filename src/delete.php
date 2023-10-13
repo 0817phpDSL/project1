@@ -2,10 +2,10 @@
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); // 웹서버 root 패스 생성
 require_once(ROOT."lib/delete_lib.php"); // DB관련 라이브러리
 
-// 삭제할 대상 = 챌린지id? 게시글id? 게시글id로 구별해야됨. 챌
+// 삭제할 대상 = 챌린지id? 게시글id? 게시글id로 구별해야됨. 챌린지id는 중복이 있기때문
 // 삭제 취소하면 돌아갈 페이지
 // $create_id = $_GET["create_id"]; // create_id : 게시글 구별하는 id
-// $page_flg = $_GET["page_flg"];	// 페이지 구별하는 플래그. "0":in_pro(진행중), "1":com(완료). 삭제 취소하면 원래 있던 페이지로 돌아감
+// $page_flg = $_GET["page_flg"];	// 페이지 구별하는 플래그. "0":in_pro(진행중), "1":com(완료). 삭제 취소하거나 삭제하면 원래 있던 페이지로 돌아감
 
 // $create_id = [
 // 	"create_id" => $create_id
@@ -14,6 +14,7 @@ require_once(ROOT."lib/delete_lib.php"); // DB관련 라이브러리
 // 	"page_flg" => $page_flg
 // ];
 $arr_get = [];
+// 빈 배열로 선언해주고 시작해야됨.
 
 $conn = null;
 // try {
@@ -21,7 +22,7 @@ $conn = null;
 		throw new Exception("DB Error : PDO Instance");
 	}
 	
-	print_r($_GET);
+	// print_r($_GET);
 	
 	
 	$http_method = $_SERVER["REQUEST_METHOD"];
@@ -72,7 +73,7 @@ $conn = null;
 
 		// print_r($arr_get);
 		// print_r($result);
-		print_r($_POST);
+		// print_r($_POST);
 		// } else if(!(count($result) === 1)) {
 		// 	// result가 true면 갯수를 세고, 갯수가 1이 아니면 예외발생?
 		// 	throw new Exception("DB Error : Select id Count");
