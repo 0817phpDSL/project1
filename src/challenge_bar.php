@@ -30,7 +30,7 @@ try {
     <form action="/project1/src/in-progress.php" method="get">
         <header class="challenge_header">
             <p class="challenge_title">Challenge</p>
-            <button class="insert_button">+</button>
+            <a href="insert.php" class="insert_button">+</a>
         </header>
         <section>
             <?php
