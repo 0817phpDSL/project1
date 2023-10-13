@@ -91,7 +91,7 @@
 }
 
 .button-in:active {
-	background: url("../src/in_progress.jpg");
+	background: url("../img/in_progress.jpg");
 	background-size: cover;
 	opacity: 0.8;
 }
@@ -105,7 +105,7 @@
 	padding-left: 30px;
 	margin-left: 50px;
 	box-sizing: border-box;
-	background: url("../src/in_progress.jpg");
+	background: url("../img/in_progress.jpg");
 	background-size: cover;
 	opacity: 0.8;
 }
