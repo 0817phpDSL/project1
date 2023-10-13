@@ -38,6 +38,13 @@
 }
 
 a {
-	color: #000;
 	text-decoration: none;
 }
+a:active {
+	color: white;
+}
+#chk1:checked + label {
+	color: black;
+}
+
+

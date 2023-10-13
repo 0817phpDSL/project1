@@ -166,7 +166,10 @@ finally {
                             }
                         ?>
                         </ul>
-                        <a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a>
+                        <form action="/project1/src/delete.php" method="GET">
+                        <input type="hidden" name="page_flg" value="1">
+                        <button name="create_id" value="<?php $item["create_id"] ?>"><a class="list_delete" href=""><img src="img/icon_trash_.png" alt="" width="20"></a><button>
+                        </form>
                     </div>
                 </div>
         <?php
