@@ -70,8 +70,7 @@ try {
             $arr_param = [
                 "c_id" => $item["c_id"]
             ];
-
-            // 완료 리스트 조회
+            // 완료 리스트 출력
              $result1 = db_select_com_list($conn, $arr_param);
              if(!$result1) {
                  // Select 에러
@@ -94,10 +93,10 @@ try {
         //         "c_id" => 1
         //         ,"c_created_at" => 20231010
         //         ,"list" => [
-        //             0 => ["l_name => "이름1"]
-        //             ,1 => ["l_name => "이름2"]
-        //             ,2 => ["l_name => "이름3"]
-        //             ,3 => ["l_name => "이름4"]
+        //             0 => ["l_name" => "이름1"]
+        //             ,1 => ["l_name" => "이름2"]
+        //             ,2 => ["l_name" => "이름3"]
+        //             ,3 => ["l_name" => "이름4"]
         //         ]
         //     ]
         //     ,
@@ -142,8 +141,6 @@ finally {
     <?php
     require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
-	// require_once(FILE_CHALLENGE);
-    // var_dump($result);
     ?>
     <section class="section-in">
     <div class="list_section">
