@@ -76,10 +76,9 @@ if($http_method === "POST"){
 	require_once(ROOT."html/header.html");
 	require_once(ROOT."html/status.html");
 	?>
-
-<form class="boxed" action="/project1/insert/insert.php" method="post">
-	<div class="container">
-		<p class="create_at">2023년 10월 10일</p>
+<section class="section-in">
+	<form class="boxed" action="/project1/insert/insert.php" method="post">
+			<p class="create_at"><?php echo date("Y-m-d")?></p>
 
 		<input type="radio" name="chk" id="chk1" value="<?php echo $result[0]["c_id"] ?>">
 			<label for="chk1" class="div_1">
@@ -137,9 +136,9 @@ if($http_method === "POST"){
 	
 		<footer>
 			<button class="button_yes div_css" type="submit">확인</button>
-			<button class="button_no div_css"><a class="a_button" href="../project1/list/main.php">취소</a></button>
-		</footer>
-	</div>	
-</form>	
+			<button class="button_no div_css"><a class="a_button" href="/project1/src/main.php">취소</a></button>
+			</footer>
+	</form>	
+</section>
 </body>
 </html>
