@@ -13,6 +13,8 @@ function db_challenge_first(&$conn) {
         ." cr.c_id = ch.c_id "
         ." AND "
         ." cr.c_deleted_at IS NULL "
+        ." AND "
+        ." cr.c_com_at IS NULL "
         ." GROUP BY cr.create_id "
         ." ORDER BY cr.c_created_at DESC"
         ." LIMIT 1 ";

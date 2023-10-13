@@ -8,31 +8,25 @@ require_once(ROOT."lib/in_lib.php");
 require_once(ROOT."lib/bar_lib.php");
 
 $com = [];
+$conn = null;
+$flg_tran = false;
+try{
+	if(!my_db_conn($conn)) {
+		// DB Instance 에러
+		throw new Exception("DB Error : PDO Instance");
+	}
 
-if(!my_db_conn($conn)) {
-	// DB Instance 에러
-	throw new Exception("DB Error : PDO Instance");
-}
-
-$challenge_first = db_challenge_first($conn);
-if($challenge_first === false) {
-	// DB Instance 에러
-	throw new Exception("challenge_first Error");
-}
-
-$http_method = $_SERVER["REQUEST_METHOD"];
-if($http_method === "GET") {
-	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : $challenge_first[0]["create_id"];
-
-} else {
-	try{
+	
+	$http_method = $_SERVER["REQUEST_METHOD"];
+	if($http_method === "POST") {
 		$arr_post = [];
 		$arr_post["create_id"] = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
 		$arr_post["l_id"] = isset($_POST["l_id"]) ? $_POST["l_id"] : "";
 
 		$arr_get = $arr_post;
 
-		$conn->beginTransaction();
+		$flg_tran = $conn->beginTransaction();
+
 		$com_list = db_complete_list($conn, $arr_post);
 		if($com_list === false) {
 		throw new Exception("complete_list Error");
@@ -42,39 +36,49 @@ if($http_method === "GET") {
 		if($com_check === false) {
 			throw new Exception("complete_check Error");
 		}
-
-			if($com_check[0]["l_com_at1"] != "" && $com_check[0]["l_com_at2"] != "" && $com_check[0]["l_com_at3"] != "" && $com_check[0]["l_com_at4"] != "") {
-				$c_com = ["create_id" => $com_check[0]["create_id"]];
-				if(db_complete_at($conn, $c_com) === false) {
-					throw new Exception("complete_at Error");
-				}
+		if($com_check[0]["l_com_at1"] != "" && $com_check[0]["l_com_at2"] != "" && $com_check[0]["l_com_at3"] != "" && $com_check[0]["l_com_at4"] != "") {
+			$c_com = ["create_id" => $com_check[0]["create_id"]];
+			if(db_complete_at($conn, $c_com) === false) {
+				throw new Exception("complete_at Error");
+			}
 		}
-
 		$conn->commit();
-	} catch(Exception $e) {
-		$conn->rollBack();
-		echo $e->getMessage(); // Exception 메세지 출력
-		exit;
 	}
-}
 
-$list = db_select_list($conn, $arr_get);
-if($list === false) {
-	// DB Instance 에러
-	throw new Exception("list Error");
-}
+	$challenge_first = db_challenge_first($conn);
+	if($challenge_first === false) {
+		// DB Instance 에러
+		throw new Exception("challenge_first Error");
+	}
 
-$list_per = db_complete_num($conn, $arr_get);
-if($list_per === false) {
-	throw new Exception("list_name Error");
-}
+	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : $challenge_first[0]["create_id"];
 
-$list_created_at = db_select_list_created_at($conn, $arr_get);
-if($list_created_at === false) {
-	// DB Instance 에러
-	throw new Exception("list_created_at Error");
+	$list = db_select_list($conn, $arr_get);
+	if($list === false) {
+		// DB Instance 에러
+		throw new Exception("list Error");
+	}
+	
+	$list_per = db_complete_num($conn, $arr_get);
+	if($list_per === false) {
+		throw new Exception("list_name Error");
+	}
+	
+	$list_created_at = db_select_list_created_at($conn, $arr_get);
+	if($list_created_at === false) {
+		// DB Instance 에러
+		throw new Exception("list_created_at Error");
+	}
+	
+} catch(Exception $e) {
+	if(!$flg_tran) {
+		$conn->rollBack();
+	}
+	echo $e->getMessage(); // Exception 메세지 출력
+	exit;
+} finally {
+	db_destroy_conn($conn);
 }
-
 
 $in_progress_c_id = $arr_get["create_id"];
 ?>
@@ -96,12 +100,13 @@ $in_progress_c_id = $arr_get["create_id"];
 </head>
 <body>
 	<?php
-    require_once(FILE_HEADER);
+    // require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
     ?>
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
 			<p class="create_at"><?php echo $list_created_at[0]["DATE(c_created_at)"]; ?></p>
+
 			<p class="ch-name"><?php echo $list[0]["c_name"]; ?></p>
 			<?php
 			if($list_per[0]["per"] === 100) { ?> 

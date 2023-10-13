@@ -37,7 +37,7 @@ try {
             foreach($challenge_bar as $item) {
                 if($item["c_com_at"] == null) { ?>
                     <button class="challenge_list_not_select challenge_list_shadow <?php echo isset($in_progress_c_id) && $in_progress_c_id == $item["create_id"]? "challenge_highlight" : "" ?>" name="create_id" value="<?php echo $item["create_id"];?>">
-                    <p class=""><?php echo $item["create_id"] ?></p>
+                    <p><?php echo $item["create_id"] ?></p>
                     <?php echo $item["c_name"]; ?></button> <br>
                 <?php }
                 }
