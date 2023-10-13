@@ -74,7 +74,7 @@ if($http_method === "POST"){
 <body>
 	<?php
 	require_once(ROOT."html/header.html");
-	require_once(ROOT."html/status.html");
+	require_once(ROOT."status.php");
 	?>
 <section class="section-in">
 	<form class="boxed" action="/project1/insert/insert.php" method="post">
@@ -136,7 +136,7 @@ if($http_method === "POST"){
 	
 		<footer>
 			<button class="button_yes div_css" type="submit">확인</button>
-			<button class="button_no div_css"><a class="a_button" href="/in-progress.php">취소</a></button>
+			<button class="button_no div_css"><a class="a_button" href="in-progress.php">취소</a></button>
 			</footer>
 	</form>	
 </section>

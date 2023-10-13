@@ -36,7 +36,9 @@ function db_select_list(&$conn, &$arr_get) {
         ." ON "
         ." cr.c_id = ch.c_id "
         ." AND "
-        ." cr.create_id = :create_id ";
+        ." cr.create_id = :create_id "
+        ." AND "
+        ." cr.c_deleted_at IS NULL ";
 
         $arr_ps = [
             ":create_id" => $arr_get["create_id"]
@@ -64,6 +66,8 @@ function db_select_list_name(&$conn, &$arr_get) {
         ." cr.c_id = ch.c_id "
         ." AND "
         ." create_id = :create_id "
+        ." AND "
+        ." cr.c_deleted_at IS NULL "
         ." GROUP BY cr.create_id ";
 
         $arr_ps = [
