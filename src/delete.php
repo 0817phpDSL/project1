@@ -2,7 +2,7 @@
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); // 웹서버 root 패스 생성
 require_once(ROOT."lib/delete_lib.php"); // DB관련 라이브러리
 
-// 삭제할 대상 = 챌린지id? 게시글id?
+// 삭제할 대상 = 챌린지id? 게시글id? 게시글id로 구별해야됨. 챌
 // 삭제 취소하면 돌아갈 페이지
 // $create_id = $_GET["create_id"]; // create_id : 게시글 구별하는 id
 // $page_flg = $_GET["page_flg"];	// 페이지 구별하는 플래그. "0":in_pro(진행중), "1":com(완료). 삭제 취소하면 원래 있던 페이지로 돌아감
@@ -29,6 +29,9 @@ $conn = null;
 	if($http_method === "GET") {
 		$arr_get = $_GET;
 		
+
+
+
 		$result = db_select_boards_id($conn, $arr_get);
 	
 		// 예외 처리
@@ -123,14 +126,13 @@ $conn = null;
 					<td>
 						<p>진행중완료 챌린지를 포기</p>
 					</td>
-
 				</tr>
 				<tr>
 					<td>
 					<form action="delete.php" method="post">
 						<input type="hidden" name="page_flg" value="<?php echo $arr_get["page_flg"] ?>">
-						<button class="btn1" type='submit' name="create_id" value="<?php echo $result[0]["create_id"] ?>">ㅇㅇ..</button>
-						<a class="btn2" href="<?php if($arr_get["page_flg"] === "0") {
+						<button class="btn2" type='submit' name="create_id" value="<?php echo $result[0]["create_id"] ?>">ㅇㅇ..</button>
+						<a class="btn1" href="<?php if($arr_get["page_flg"] === "0") {
 							echo "in-progress.php";
 						} else if($arr_get["page_flg"] === "1") {
 							echo "complete.php";

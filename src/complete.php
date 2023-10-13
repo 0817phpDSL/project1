@@ -2,7 +2,7 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); //웹 서버
 define("FILE_HEADER", ROOT."html/header.html");
-define("FILE_STATUS", ROOT."html/status.html");
+define("FILE_STATUS", ROOT."status.php");
 define("FILE_CHALLENGE", ROOT."challenge_bar.php");
 require_once(ROOT. "lib/com_lib.php"); // DB 라이브러리
 require_once(ROOT. "lib/bar_lib.php"); // DB 라이브러리
