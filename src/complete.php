@@ -150,7 +150,7 @@ finally {
                 <div class="list_com_bg">
                     <div class="list_com_border">
                         <div class="list_header">
-                        <p class="list_com_title"><?php echo $item["c_name"]; ?></p>
+                        <p class="list_com_title"><span class="pink"><?php echo $item["create_id"] ?></span> <?php echo $item["c_name"]; ?></>
                         <p class="list_date"> <?php echo $item["c_created_at"]; ?> ~ <span class="red"><?php echo $item["c_com_at"]; ?> <span> </p>
                         </div>
                         <ul>
