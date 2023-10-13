@@ -42,6 +42,7 @@ $conn = null;
 		}
 
 		print_r($_POST);
+		print_r($_GET);
 		// } else if(!(count($result) === 1)) {
 		// 	// result가 true면 갯수를 세고, 갯수가 1이 아니면 예외발생?
 		// 	throw new Exception("DB Error : Select id Count");
