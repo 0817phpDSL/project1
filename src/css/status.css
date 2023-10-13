@@ -40,11 +40,7 @@
 a {
 	text-decoration: none;
 }
-a:active {
-	color: white;
-}
-#chk1:checked + label {
+
+div>.box-color {
 	color: black;
 }
-
-
