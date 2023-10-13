@@ -58,6 +58,26 @@
 
 }
 
+.progress-com {
+	width: 100%;
+	height: 50px;
+    appearance: none;
+	margin-bottom: 70px;
+	box-sizing: border-box;
+}
+.progress-com::-webkit-progress-bar {
+    background:#f0f0f0;
+    border-radius: 25px;
+    box-shadow: inset 3px 3px 10px #ccc;
+}
+.progress-com::-webkit-progress-value {
+    border-radius: 25px;
+    background: #62B6F5;
+    background: -webkit-linear-gradient(to right, #86DCF4, #62B6F5);
+    background: linear-gradient(to right, #86DCF4, #62B6F5);
+
+}
+
 .button-in {
 	width: 90%;
 	height: 90px;

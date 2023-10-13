@@ -42,6 +42,8 @@ function db_select_challenge_bar(&$conn) {
         ." chal_info ch "
         ." ON "
         ." cr.c_id = ch.c_id "
+        ." AND "
+        ." cr.c_deleted_at IS NULL "
         ." GROUP BY cr.create_id "
         ." ORDER BY cr.c_com_at ";
 

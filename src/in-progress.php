@@ -43,13 +43,11 @@ if($http_method === "GET") {
 			throw new Exception("complete_check Error");
 		}
 
-		foreach($com_check as $value) {
-			if($value["l_com_at1"] != "" && $value["l_com_at2"] != "" && $value["l_com_at3"] != "" && $value["l_com_at4"] != "") {
-				$c_com = ["create_id" => $value["create_id"]];
+			if($com_check[0]["l_com_at1"] != "" && $com_check[0]["l_com_at2"] != "" && $com_check[0]["l_com_at3"] != "" && $com_check[0]["l_com_at4"] != "") {
+				$c_com = ["create_id" => $com_check[0]["create_id"]];
 				if(db_complete_at($conn, $c_com) === false) {
 					throw new Exception("complete_at Error");
 				}
-			}
 		}
 
 		$conn->commit();
@@ -95,14 +93,14 @@ $in_progress_c_id = $arr_get["create_id"];
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 
-	<!-- <link rel="stylesheet" href="./css/header.css"> -->
+	<link rel="stylesheet" href="./css/header.css">
 	<link rel="stylesheet" href="./css/status.css">
 	<link rel="stylesheet" href="./css/challenge_bar.css">
 	<title>Document</title>
 </head>
 <body>
 	<?php
-    // require_once(FILE_HEADER);
+    require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
 	require_once(FILE_CHALLENGE);
     ?>
@@ -112,8 +110,12 @@ $in_progress_c_id = $arr_get["create_id"];
 			<?php
 			foreach($list_name as $tit) { ?>
 			<p class="ch-name"><?php echo $tit["c_name"]; ?></p>
+			<?php } 
+			if($list_per[0]["per"] === 100) { ?> 
+				<progress class="progress-com" value="<?php echo $list_per[0]["per"]; ?>" max="100"></progress>
+			<?php } else { ?>
+				<progress class="progress" value="<?php echo $list_per[0]["per"]; ?>" max="100"></progress>
 			<?php } ?>
-			<progress class="progress" value="<?php echo $list_per[0]["per"]; ?>" max="100"></progress>
 			<?php
 			foreach($list as $item) { ?>
 			<input type="hidden" name="create_id" value="<?php echo $item["create_id"] ?>">

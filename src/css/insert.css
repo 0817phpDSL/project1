@@ -49,6 +49,8 @@ button{
 	color:black;
 	cursor:pointer;
 	text-decoration: none;
+	padding: 8px 25px;
+	font-size: 0.9rem;
 }
 .button_yes{
 	background-color:#E4E4E4;
