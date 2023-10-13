@@ -32,9 +32,11 @@ footer{
 	right:200px;
 	line-height: 15px;
 }
-button,.button_no{
+button{
 	margin:10px;
-	text-decoration: none;
+}
+.a_no{
+	margin:10px;
 }
 .button_no{
 	background-color:#E4E4E4;

@@ -135,7 +135,7 @@ if($http_method === "POST"){
 	
 		<footer>
 			<button class="button_yes div_css" type="submit">확인</button>
-			<button class="button_no div_css"><a class="button_no" href="in-progress.php">취소</a></button>
+			<button class="button_no div_css"><a class="a_no" href="in-progress.php">취소</a></button>
 			</footer>
 	</form>	
 </section>
