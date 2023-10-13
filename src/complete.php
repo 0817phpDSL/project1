@@ -175,7 +175,7 @@ finally {
     </div>
     <div class = "page_section">
     <!-- 이전 페이지 버튼 -->
-    <a class = "page_prev_button" href="/project1/src/complete.php/?page=<?php echo $prev_page_num ?>"><</a>
+    <a class = "page_prev_button button_shadow" href="/project1/src/complete.php/?page=<?php echo $prev_page_num ?>"><</a>
     <!-- $i=1, 1이 증가하면서 최대 페이지수까지만 반복 -->
     <?php
             for($i = 1; $i <= $max_page_num; $i++) {
@@ -185,17 +185,17 @@ finally {
             if ((int)$page_num === $i) {
             ?>
              <!-- a : 페이지 표시 버튼 -->
-            <a class="act_bbg" href="/project1/src/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a class="act_bbg button_shadow" href="/project1/src/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
             <?php
             } else {
             ?>
-            <a class="bbg" href="/project1/src/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a class="bbg button_shadow" href="/project1/src/complete.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
             <?php
             }
             }   
     ?>
     <!-- 다음 페이지 버튼 -->
-    <a class = "page_next_button" href="/project1/src/complete.php/?page=<?php echo $next_page_num ?>">></a>
+    <a class = "page_next_button button_shadow" href="/project1/src/complete.php/?page=<?php echo $next_page_num ?>">></a>
     </div>
         </section>
 </body>

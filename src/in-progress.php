@@ -13,10 +13,17 @@ if(!my_db_conn($conn)) {
 	// DB Instance 에러
 	throw new Exception("DB Error : PDO Instance");
 }
+
+$challenge_first = db_challenge_first($conn);
+if($challenge_first === false) {
+	// DB Instance 에러
+	throw new Exception("challenge_first Error");
+}
+
 $http_method = $_SERVER["REQUEST_METHOD"];
 if($http_method === "GET") {
 	$arr_get = $_GET;
-	$arr_get["create_id"] = isset($arr_get["create_id"]) ? $arr_get["create_id"] : "1";
+	$arr_get["create_id"] = isset($arr_get["create_id"]) ? $arr_get["create_id"] : $challenge_first[0]["create_id"];
 
 } else {
 	try{
@@ -69,6 +76,12 @@ if($list_per === false) {
 	throw new Exception("list_name Error");
 }
 
+$list_created_at = db_select_list_created_at($conn, $arr_get);
+if($list_created_at === false) {
+	// DB Instance 에러
+	throw new Exception("list_created_at Error");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -81,20 +94,20 @@ if($list_per === false) {
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="./css/header.css">
+	<!-- <link rel="stylesheet" href="./css/header.css"> -->
 	<link rel="stylesheet" href="./css/status.css">
 	<link rel="stylesheet" href="./css/challenge_bar.css">
 	<title>Document</title>
 </head>
 <body>
 	<?php
-    require_once(FILE_HEADER);
+    // require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
 	require_once(FILE_CHALLENGE);
     ?>
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
-			<p class="create_at">2023년 10월 10일</p>
+			<p class="create_at"><?php echo $list_created_at[0]["DATE(c_created_at)"]; ?></p>
 			<?php
 			foreach($list_name as $tit) { ?>
 			<p class="ch-name"><?php echo $tit["c_name"]; ?></p>
