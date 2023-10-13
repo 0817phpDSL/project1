@@ -14,15 +14,15 @@ if(!my_db_conn($conn)) {
 	throw new Exception("DB Error : PDO Instance");
 }
 
-// $challenge_first = db_challenge_first($conn);
-// if($challenge_first === false) {
-// 	// DB Instance 에러
-// 	throw new Exception("challenge_first Error");
-// }
+$challenge_first = db_challenge_first($conn);
+if($challenge_first === false) {
+	// DB Instance 에러
+	throw new Exception("challenge_first Error");
+}
 
 $http_method = $_SERVER["REQUEST_METHOD"];
 if($http_method === "GET") {
-	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : "1";
+	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : $challenge_first[0]["create_id"];
 
 } else {
 	try{
@@ -79,6 +79,7 @@ if($list_created_at === false) {
 	// DB Instance 에러
 	throw new Exception("list_created_at Error");
 }
+
 
 $in_progress_c_id = $arr_get["create_id"];
 ?>

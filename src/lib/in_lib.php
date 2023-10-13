@@ -1,28 +1,30 @@
 <?php
 
-// function db_challenge_first(&$conn) {
-// 	try {
-// 		$sql = 
-//         " SELECT "
-//         ." cr.create_id "
-//         ." FROM "
-//         ." create_information cr "
-//         ." JOIN "
-//         ." chal_info ch "
-//         ." ON "
-//         ." cr.c_id = ch.c_id "
-//         ." GROUP BY cr.create_id "
-//         ." ORDER BY cr.c_com_at "
-//         ." LIMIT 1 ";
+function db_challenge_first(&$conn) {
+	try {
+		$sql = 
+        " SELECT "
+        ." cr.create_id, ch.c_name, cr.c_com_at "
+        ." FROM "
+        ." create_information cr "
+        ." JOIN "
+        ." chal_info ch "
+        ." ON "
+        ." cr.c_id = ch.c_id "
+        ." AND "
+        ." cr.c_deleted_at IS NULL "
+        ." GROUP BY cr.create_id "
+        ." ORDER BY cr.c_com_at "
+        ." LIMIT 1 ";
 
 
-// 		$stmt = $conn->query($sql);
-//         $result = $stmt->fetchAll();
-//         return $result; // 정상 : 쿼리 결과 리턴
-//     } catch(Exception $e) {
-//         return false; // 예외 발생 : false 리턴
-//     }
-// }
+		$stmt = $conn->query($sql);
+        $result = $stmt->fetchAll();
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        return false; // 예외 발생 : false 리턴
+    }
+}
 
 function db_select_list(&$conn, &$arr_get) {
 	try {
