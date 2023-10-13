@@ -64,11 +64,6 @@ if($list === false) {
 	throw new Exception("list Error");
 }
 
-$list_name = db_select_list_name($conn, $arr_get);
-if($list_name === false) {
-	throw new Exception("list_name Error");
-}
-
 $list_per = db_complete_num($conn, $arr_get);
 if($list_per === false) {
 	throw new Exception("list_name Error");
@@ -107,10 +102,8 @@ $in_progress_c_id = $arr_get["create_id"];
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
 			<p class="create_at"><?php echo $list_created_at[0]["DATE(c_created_at)"]; ?></p>
+			<p class="ch-name"><?php echo $list[0]["c_name"]; ?></p>
 			<?php
-			foreach($list_name as $tit) { ?>
-			<p class="ch-name"><?php echo $tit["c_name"]; ?></p>
-			<?php } 
 			if($list_per[0]["per"] === 100) { ?> 
 				<progress class="progress-com" value="<?php echo $list_per[0]["per"]; ?>" max="100"></progress>
 			<?php } else { ?>
