@@ -14,16 +14,16 @@ if(!my_db_conn($conn)) {
 	throw new Exception("DB Error : PDO Instance");
 }
 
-$challenge_first = db_challenge_first($conn);
-if($challenge_first === false) {
-	// DB Instance 에러
-	throw new Exception("challenge_first Error");
-}
+// $challenge_first = db_challenge_first($conn);
+// if($challenge_first === false) {
+// 	// DB Instance 에러
+// 	throw new Exception("challenge_first Error");
+// }
 
 $http_method = $_SERVER["REQUEST_METHOD"];
 if($http_method === "GET") {
 	$arr_get = $_GET;
-	$arr_get["create_id"] = isset($arr_get["create_id"]) ? $arr_get["create_id"] : $challenge_first[0]["create_id"];
+	$arr_get["create_id"] = isset($arr_get["create_id"]) ? $arr_get["create_id"] : "1";
 
 } else {
 	try{
@@ -144,7 +144,7 @@ if($list_created_at === false) {
 		</button>
 		<?php } ?>
 	</form>
-	<form action="../delete/delete.php" method="get">
+	<form action="delete.php" method="get">
 		<input type="hidden" name="page_flg" value="0">
 		<button name="create_id" value="<?php echo $arr_get["create_id"]; ?>" onclick="location.href('../delete/delete.php')" class="trash"></button>
 	</form>

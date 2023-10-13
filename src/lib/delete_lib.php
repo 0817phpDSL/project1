@@ -47,7 +47,7 @@ function db_destroy_conn(&$conn) {
 //			  Array		&$arr_param 쿼리 작성용 배열
 // 리턴     : Array / false
 // ---------------------------------
-function db_select_boards_id(&$conn, &$arr_param) {
+function db_select_boards_id(&$conn, &$arr_get) {
 	$sql =
 	" SELECT "
 	."		create_id "
@@ -59,7 +59,7 @@ function db_select_boards_id(&$conn, &$arr_param) {
 	;
 
 	$arr_ps = [
-		":create_id" => $arr_param["create_id"]
+		":create_id" => $arr_get["create_id"]
 	];
 
 	try {
@@ -80,30 +80,28 @@ function db_select_boards_id(&$conn, &$arr_param) {
 //			 Array		&$arr_param
 // 리턴     : boolean
 // ---------------------------------
-// function db_delete_boards_id(&$conn, &$arr_param) {
-// 	$sql =
-// 	 " UPDATE "
-// 	."		create_information " 
-// 	." SET "
-// 	."		c_deleted_at = NOW() "
-// 	." WHERE "
-// 	."		create_id = :create_id "
-// 	." AND "
-// 	."		c_deleted_at = null "
-// 	;
+function db_delete_boards_id(&$conn, &$arr_post) {
+	$sql =
+	 " UPDATE "
+	."		create_information " 
+	." SET "
+	."		c_deleted_at = NOW() "
+	." WHERE "
+	."		create_id = :create_id "
+	;
 
-// 	$arr_ps = [
-// 		":create_id" => $arr_param["create_id"]
-// 	];
+	$arr_ps = [
+		":create_id" => $arr_post["create_id"]
+	];
 
-// 	try {
-// 		$stmt = $conn->prepare($sql);
-// 		$result = $stmt->execute($arr_ps);
-// 		return $result; 
-// 	} catch(Exception $e) {
-// 		echo $e->getMessage(); 
-// 		return false; 
-// 	}
-// }	
+	try {
+		$stmt = $conn->prepare($sql);
+		$result = $stmt->execute($arr_ps);
+		return $result; 
+	} catch(Exception $e) {
+		echo $e->getMessage(); 
+		return false; 
+	}
+}	
 
 ?>

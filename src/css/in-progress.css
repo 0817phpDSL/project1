@@ -80,7 +80,7 @@
 }
 
 .trash {
-	background-image: url(../src/trash.png);
+	background-image: url("../img/trash.png");
 	background-size: cover;
 	width: 50px;
 	height: 50px;
