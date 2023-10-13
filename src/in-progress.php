@@ -14,15 +14,15 @@ if(!my_db_conn($conn)) {
 	throw new Exception("DB Error : PDO Instance");
 }
 
-// $challenge_first = db_challenge_first($conn);
-// if($challenge_first === false) {
-// 	// DB Instance 에러
-// 	throw new Exception("challenge_first Error");
-// }
+$challenge_first = db_challenge_first($conn);
+if($challenge_first === false) {
+	// DB Instance 에러
+	throw new Exception("challenge_first Error");
+}
 
 $http_method = $_SERVER["REQUEST_METHOD"];
 if($http_method === "GET") {
-	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : "1";
+	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : $challenge_first[0]["create_id"];
 
 } else {
 	try{
@@ -64,11 +64,6 @@ if($list === false) {
 	throw new Exception("list Error");
 }
 
-$list_name = db_select_list_name($conn, $arr_get);
-if($list_name === false) {
-	throw new Exception("list_name Error");
-}
-
 $list_per = db_complete_num($conn, $arr_get);
 if($list_per === false) {
 	throw new Exception("list_name Error");
@@ -79,6 +74,7 @@ if($list_created_at === false) {
 	// DB Instance 에러
 	throw new Exception("list_created_at Error");
 }
+
 
 $in_progress_c_id = $arr_get["create_id"];
 ?>
@@ -106,10 +102,8 @@ $in_progress_c_id = $arr_get["create_id"];
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
 			<p class="create_at"><?php echo $list_created_at[0]["DATE(c_created_at)"]; ?></p>
+			<p class="ch-name"><?php echo $list[0]["c_name"]; ?></p>
 			<?php
-			foreach($list_name as $tit) { ?>
-			<p class="ch-name"><?php echo $tit["c_name"]; ?></p>
-			<?php } 
 			if($list_per[0]["per"] === 100) { ?> 
 				<progress class="progress-com" value="<?php echo $list_per[0]["per"]; ?>" max="100"></progress>
 			<?php } else { ?>
