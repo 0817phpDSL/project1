@@ -32,9 +32,11 @@ footer{
 	right:200px;
 	line-height: 15px;
 }
-button,.button_no{
+button{
 	margin:10px;
-	text-decoration: none;
+}
+.a_no{
+	margin:10px;
 }
 .button_no{
 	background-color:#E4E4E4;
@@ -47,6 +49,8 @@ button,.button_no{
 	color:black;
 	cursor:pointer;
 	text-decoration: none;
+	padding: 8px 25px;
+	font-size: 0.9rem;
 }
 .button_yes{
 	background-color:#E4E4E4;

@@ -67,7 +67,7 @@ function db_insert_create_at(&$conn, &$arr_post) {
 	." ) "
 	;
 		$arr_ps =[
-		":c_id" => $arr_post["c_id"]
+		":c_id" => $arr_post["chk"]
 		];
 try{
 		$stmt=$conn->prepare($sql);

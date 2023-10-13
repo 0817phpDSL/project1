@@ -3,49 +3,30 @@
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); //웹 서버
 require_once(ROOT."lib/insert_lib.php"); // DB 라이브러리
 
+$arr_post = [];
 $conn=null;
-try{
-	// DB접속
-	if(!my_db_conn($conn)){
-		throw new exception ("DB Error : PDO Instance");
-	}
-	$result = db_select_chal_conn($conn, $arr_param);
-	if(!$result){
-		throw new Exception("DB Error:Challenge info error");
-	}
-
-} catch(Exception $e){
-	echo $e->getMessage();
-	exit;
+// DB접속
+if(!my_db_conn($conn)){
+	throw new exception ("DB Error : PDO Instance");
 }
-finally {
-	db_destroy_conn($conn);
-} 
+
 // POST로 request가 왔을 때 처리
 $http_method=$_SERVER["REQUEST_METHOD"];
 if($http_method === "POST"){
 	try{
-		$arr_post = $_POST;
-		$conn=null; //DB connection 변수
 		// // 파라미터 획득
-		$arr_post["c_id"] = isset($_POST["c_id"]) ? trim($_POST["c_id"]) : "1";
-			// DB 접속
-			if(!my_db_conn($conn)){
-				//db instance 에러
-				throw new Exception(
-					"DB Error : PDO instance");
-			}
-			$conn->beginTransaction(); //트랜잭션 시작
+		$arr_post = $_POST;
+		$arr_post[] = isset($_POST["chk"]) ? trim($_POST["chk"]) : "1";
 
-			// insert
+			$conn->beginTransaction(); //트랜잭션 시작
 			if(!db_insert_create_at($conn, $arr_post)) {
 				//DB Insert 에러
 				throw new Exception("DB Error : Insert Boards");
 			}
 			$conn->commit(); //모든 처리 완료 시 커밋
 			// 리스트 페이지로 이동
-			// header("Location: main.php");
-			// exit;
+			header("Location: in-progress.php");
+			exit;
 	} catch(Exception $e) {
 		$conn->rollBack();
 		echo $e->getMessage(); //exception 메세지 출력
@@ -53,6 +34,11 @@ if($http_method === "POST"){
 	} finally {
 		db_destroy_conn($conn); //DB 파기
 	}
+}
+
+$result = db_select_chal_conn($conn, $arr_param);
+if(!$result){
+	throw new Exception("DB Error:Challenge info error");
 }
 
 ?>
@@ -72,11 +58,11 @@ if($http_method === "POST"){
 </head>
 <body>
 	<?php
-	require_once(ROOT."html/header.html");
+	// require_once(ROOT."html/header.html");
 	
 	?>
 <section class="section-in">
-	<form class="boxed" action="/project1/insert/insert.php" method="post">
+	<form class="boxed" action="insert.php" method="post">
 			<p class="create_at"><?php echo date("Y-m-d")?></p>
 
 		<input type="radio" name="chk" id="chk1" value="<?php echo $result[0]["c_id"] ?>">
@@ -135,7 +121,7 @@ if($http_method === "POST"){
 	
 		<footer>
 			<button class="button_yes div_css" type="submit">확인</button>
-			<button class="button_no div_css"><a class="button_no" href="in-progress.php">취소</a></button>
+			<a class="a_no button_no" href="in-progress.php">취소</a>
 			</footer>
 	</form>	
 </section>
