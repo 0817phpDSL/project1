@@ -58,7 +58,7 @@ if(!$result){
 </head>
 <body>
 	<?php
-	// require_once(ROOT."html/header.html");
+	require_once(ROOT."html/header.html");
 	
 	?>
 <section class="section-in">
