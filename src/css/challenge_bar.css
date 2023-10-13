@@ -57,8 +57,15 @@
     height: 50px;
     border: none;
     background-color: #FFCACA;
+    text-align: center;
+    line-height: 50px;
+    opacity: 50%;
 
     border-radius: 5px;
+}
+.insert_button:hover {
+    background-color: #FFCACA;
+    opacity: 100%;
 }
 /* 챌린지 리스트 */
 .challenge_list_select { /* 선택 */
