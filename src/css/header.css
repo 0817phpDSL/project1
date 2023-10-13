@@ -21,3 +21,6 @@ html, body {
 	position: absolute;
 	top: 0;
 }
+a {
+	text-decoration: none;
+}
