@@ -101,7 +101,13 @@ li {
     height: 20px;
     margin-left: 300px;
 }
-
+/* 페이지 버튼 영역 */
+.page_section {
+    position: fixed;
+    left: 50%;
+    transform: translateX( -50% );
+    bottom: 30px;
+}
 /* 페이지 버튼 */
 .bbg, .page_prev_button, .page_next_button {
     display: inline-block;
@@ -127,6 +133,9 @@ li {
     line-height: 30px;
 
     background-color: #FFCACA;
-    color: black;
-    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+/* 버튼 그림자 */
+.button_shadow {
+    box-shadow: 0px 1px 3px 0.5px #d6d6d6;
 }

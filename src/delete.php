@@ -1,5 +1,5 @@
 <?php
-define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/delete"); // 웹서버 root 패스 생성
+define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src"); // 웹서버 root 패스 생성
 require_once(ROOT."/delete_lib.php"); // DB관련 라이브러리
 
 // 삭제할 대상 = 챌린지id? 게시글id?
