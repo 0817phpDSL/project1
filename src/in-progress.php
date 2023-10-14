@@ -10,20 +10,18 @@ require_once(ROOT."lib/bar_lib.php");
 $com = [];
 $conn = null;
 $flg_tran = false;
+$arr_get = [];
 try{
 	if(!my_db_conn($conn)) {
 		// DB Instance 에러
 		throw new Exception("DB Error : PDO Instance");
 	}
-
 	
 	$http_method = $_SERVER["REQUEST_METHOD"];
 	if($http_method === "POST") {
 		$arr_post = [];
 		$arr_post["create_id"] = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
 		$arr_post["l_id"] = isset($_POST["l_id"]) ? $_POST["l_id"] : "";
-
-		$arr_get = $arr_post;
 
 		$flg_tran = $conn->beginTransaction();
 
@@ -43,15 +41,22 @@ try{
 			}
 		}
 		$conn->commit();
+		$arr_get = $arr_post;
 	}
-
+	
 	$challenge_first = db_challenge_first($conn);
 	if($challenge_first === false) {
 		// DB Instance 에러
 		throw new Exception("challenge_first Error");
 	}
 
-	$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : $challenge_first[0]["create_id"];
+	if(isset($_GET["create_id"])) {
+		$arr_get["create_id"] = $_GET["create_id"];
+	} else if (isset($arr_get["create_id"])) {
+		$arr_get["create_id"] = $arr_get["create_id"];
+	} else {
+		$arr_get["create_id"] = $challenge_first[0]["create_id"];
+	}
 
 	$list = db_select_list($conn, $arr_get);
 	if($list === false) {
@@ -100,7 +105,7 @@ $in_progress_c_id = $arr_get["create_id"];
 </head>
 <body>
 	<?php
-    // require_once(FILE_HEADER);
+    require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
     ?>
 	<section class="section-in">
