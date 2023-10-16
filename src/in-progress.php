@@ -12,6 +12,7 @@ $conn = null;
 $flg_tran = false;
 $arr_get = [];
 $err_msg = [];
+$arr_post = [];
 
 try{
 	if(!my_db_conn($conn)) {
@@ -21,25 +22,53 @@ try{
 	
 	$http_method = $_SERVER["REQUEST_METHOD"];
 	if($http_method === "POST") {
-		$arr_post = [];
 		$arr_post["create_id"] = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
 		$arr_post["l_id"] = isset($_POST["l_id"]) ? $_POST["l_id"] : "";
 
 		$flg_tran = $conn->beginTransaction();
 
-		$com_list = db_complete_list($conn, $arr_post);
-		if($com_list === false) {
-		throw new Exception("complete_list Error");
-		}
-
 		$com_check = db_select_complete_check($conn, $arr_post);
 		if($com_check === false) {
 			throw new Exception("complete_check Error");
 		}
-		if($com_check[0]["l_com_at1"] != "" && $com_check[0]["l_com_at2"] != "" && $com_check[0]["l_com_at3"] != "" && $com_check[0]["l_com_at4"] != "") {
-			$c_com = ["create_id" => $com_check[0]["create_id"]];
-			if(db_complete_at($conn, $c_com) === false) {
-				throw new Exception("complete_at Error");
+
+		$complete_list = $com_check[0]["l_com_at".$arr_post["l_id"]];
+
+		if($complete_list != NULL) {
+			if(db_complete_cancel($conn, $arr_post) === false) {
+				throw new Exception("complete_list cancel Error");
+			}
+
+			$com_check = db_select_complete_check($conn, $arr_post);
+			if($com_check === false) {
+				throw new Exception("complete_check Error");
+			}
+
+			$complete_count = db_complete_count($conn, $arr_post);
+			if($complete_count === false) {
+				throw new Exception("complete count Error");
+			}
+
+			if($complete_count[0]["cnt"] < 4) {
+				if(db_complete_at_cancel($conn, $arr_post) === false) {
+					throw new Exception("complete_cancel Error");
+				}
+			}
+		} else {
+			$com_list = db_complete_list($conn, $arr_post);
+			if($com_list === false) {
+			throw new Exception("complete_list Error");
+			}
+
+			$com_check = db_select_complete_check($conn, $arr_post);
+			if($com_check === false) {
+				throw new Exception("complete_check Error");
+			}
+			if($com_check[0]["l_com_at1"] != "" && $com_check[0]["l_com_at2"] != "" && $com_check[0]["l_com_at3"] != "" && $com_check[0]["l_com_at4"] != "") {
+				$c_com = ["create_id" => $com_check[0]["create_id"]];
+				if(db_complete_at($conn, $c_com) === false) {
+					throw new Exception("complete_at Error");
+				}
 			}
 		}
 		$conn->commit();
@@ -77,12 +106,6 @@ try{
 		throw new Exception("list_name Error");
 	}
 	
-	$list_created_at = db_select_list_created_at($conn, $arr_get);
-	if($list_created_at === false) {
-		// DB Instance 에러
-		throw new Exception("list_created_at Error");
-	}
-	
 } catch(Exception $e) {
 	if(!$flg_tran) {
 		$conn->rollBack();
@@ -118,7 +141,7 @@ $in_progress_c_id = $arr_get["create_id"];
     ?>
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
-			<p class="create_at"><?php echo $list_created_at[0]["DATE(c_created_at)"]; ?></p>
+			<p class="create_at"><?php echo $list[0]["DATE(cr.c_created_at)"]; ?></p>
 
 			<p class="ch-name"><?php echo $list[0]["c_name"]; ?></p>
 			<?php
