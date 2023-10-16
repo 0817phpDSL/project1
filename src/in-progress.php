@@ -79,7 +79,8 @@ try{
 	if(!$flg_tran) {
 		$conn->rollBack();
 	}
-	echo $e->getMessage(); // Exception 메세지 출력
+	// echo $e->getMessage(); // Exception 메세지 출력
+	header("Location: in-progress_error.php/?err_msg={$e->getmessage()}"); // error 메세지 출력 (error.php)
 	exit;
 } finally {
 	db_destroy_conn($conn);
