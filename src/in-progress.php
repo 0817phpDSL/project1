@@ -12,6 +12,7 @@ $conn = null;
 $flg_tran = false;
 $arr_get = [];
 $err_msg = [];
+$arr_post = [];
 
 try{
 	if(!my_db_conn($conn)) {
@@ -21,7 +22,6 @@ try{
 	
 	$http_method = $_SERVER["REQUEST_METHOD"];
 	if($http_method === "POST") {
-		$arr_post = [];
 		$arr_post["create_id"] = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
 		$arr_post["l_id"] = isset($_POST["l_id"]) ? $_POST["l_id"] : "";
 
@@ -71,8 +71,6 @@ try{
 				}
 			}
 		}
-
-
 		$conn->commit();
 		$arr_get = $arr_post;
 	}
@@ -138,7 +136,7 @@ $in_progress_c_id = $arr_get["create_id"];
 </head>
 <body>
 	<?php
-    // require_once(FILE_HEADER);
+    require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
     ?>
 	<section class="section-in">
