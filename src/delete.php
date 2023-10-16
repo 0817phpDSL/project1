@@ -16,6 +16,8 @@ require_once(ROOT."lib/delete_lib.php"); // DB관련 라이브러리
 
 
 $arr_get = [];
+$arr_post = [];
+// $_GET, $_POST로 받아 온 값(배열)을 변수에 담아 놓고 사용할것임.
 // 빈 배열로 선언해주고 시작해야됨.
 
 $conn = null;
@@ -102,6 +104,10 @@ $conn = null;
 // } finally {
 // 	db_destroy_conn($conn);
 // }
+
+
+
+
 
 ?>
 
