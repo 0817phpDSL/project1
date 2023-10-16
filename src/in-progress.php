@@ -108,12 +108,6 @@ try{
 		throw new Exception("list_name Error");
 	}
 	
-	$list_created_at = db_select_list_created_at($conn, $arr_get);
-	if($list_created_at === false) {
-		// DB Instance 에러
-		throw new Exception("list_created_at Error");
-	}
-	
 } catch(Exception $e) {
 	if(!$flg_tran) {
 		$conn->rollBack();
@@ -149,7 +143,7 @@ $in_progress_c_id = $arr_get["create_id"];
     ?>
 	<section class="section-in">
 		<form class="form-in" action="in-progress.php" method="post">
-			<p class="create_at"><?php echo $list_created_at[0]["DATE(c_created_at)"]; ?></p>
+			<p class="create_at"><?php echo $list[0]["DATE(cr.c_created_at)"]; ?></p>
 
 			<p class="ch-name"><?php echo $list[0]["c_name"]; ?></p>
 			<?php

@@ -32,7 +32,7 @@ function db_select_list(&$conn, &$arr_get) {
 	try {
 		$sql =
         " SELECT "
-        ." cr.create_id, cr.c_id, ch.l_id, ch.l_name, ch.c_name
+        ." cr.create_id, cr.c_id, ch.l_id, ch.l_name, ch.c_name, DATE(cr.c_created_at)
         , cr.l_com_at1, cr.l_com_at2, cr.l_com_at3, cr.l_com_at4, cr.c_com_at "
         ." FROM create_information cr "
         ." JOIN "
@@ -156,29 +156,6 @@ function db_complete_num(&$conn, &$arr_get) {
         ."        ELSE 0 "
         ."    END)) AS per "
         ." FROM create_information ci "
-        ." WHERE "
-        ." create_id = :create_id ";
-
-        $arr_ps = [
-            ":create_id" => $arr_get["create_id"]
-        ];
-
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($arr_ps);
-        $result = $stmt->fetchAll();
-        return $result; // 정상 : 쿼리 결과 리턴
-    } catch(Exception $e) {
-        return false; // 예외 발생 : false 리턴
-    }
-}
-
-function db_select_list_created_at(&$conn, &$arr_get) {
-	try {
-		$sql =
-        " SELECT "
-        ." DATE(c_created_at) "
-        ." FROM "
-        ." create_information "
         ." WHERE "
         ." create_id = :create_id ";
 
