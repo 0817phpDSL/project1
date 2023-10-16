@@ -11,6 +11,8 @@ $com = [];
 $conn = null;
 $flg_tran = false;
 $arr_get = [];
+$err_msg = [];
+
 try{
 	if(!my_db_conn($conn)) {
 		// DB Instance 에러
@@ -63,7 +65,13 @@ try{
 		// DB Instance 에러
 		throw new Exception("list Error");
 	}
-	
+	if(count($list) === 0) {
+		$err_msg[] = "error";
+	}
+	if(count($err_msg) >= 1) {
+		header("Location: in-progress_error.php");
+	}
+
 	$list_per = db_complete_num($conn, $arr_get);
 	if($list_per === false) {
 		throw new Exception("list_name Error");
@@ -79,8 +87,7 @@ try{
 	if(!$flg_tran) {
 		$conn->rollBack();
 	}
-	// echo $e->getMessage(); // Exception 메세지 출력
-	header("Location: in-progress_error.php/?err_msg={$e->getmessage()}"); // error 메세지 출력 (error.php)
+	echo $e->getMessage(); // Exception 메세지 출력
 	exit;
 } finally {
 	db_destroy_conn($conn);
