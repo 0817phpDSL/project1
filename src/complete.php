@@ -12,6 +12,8 @@ $conn = null; // DB 커넥션 변수
 
 $list_cnt = 9; // 한 페이지 최대 표시 수
 $page_num = 1; // 페이지 번호 초기화
+
+$err_msg = [];
 try {
        // DB 접속
        if (!my_db_conn($conn)) {
@@ -60,10 +62,17 @@ try {
 //---------------------------------------------------------------------------
         // 리스트 조회
         $result = db_select_create_information($conn, $arr_param);
+        if(count($result) === 0) {
+            $err_msg[] = "error";
+        }
+        if(count($err_msg) >= 1) {
+            header("Location: complete_error.php"); // error 메세지 출력 (error.php)
+        }
         if(!$result) {
             // Select 에러
             throw new Exception("No completed item"); // 강제 예외 발생 : SELECT board
         }
+        
 
         $data = [];
         foreach($result as $item) {
@@ -113,8 +122,7 @@ try {
     }
 catch(Exception $e) {
         // 예외 발생 메세지 (getMessage 메소드) 출력
-        // echo $e->getMessage();
-        header("Location: complete_error.php/?err_msg={$e->getmessage()}"); // error 메세지 출력 (error.php)
+        echo $e->getMessage();
 
         // 처리 종료
         exit;
