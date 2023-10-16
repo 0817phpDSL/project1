@@ -40,7 +40,9 @@ $conn = null;
 		if($result === false) {
 			throw new Exception("DB Error : Select id");
 		}
+
 	} else {
+		// Method가 POST일 경우
 		try{
 			$arr_post = $_POST;
 

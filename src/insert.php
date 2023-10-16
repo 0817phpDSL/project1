@@ -5,17 +5,24 @@ require_once(ROOT."lib/insert_lib.php"); // DB 라이브러리
 
 $arr_post = [];
 $conn=null;
+
+
+$result = db_select_chal_conn($conn);
+if(!$result){
+	throw new Exception("DB Error:Challenge info error");
+}
+
 // DB접속
 if(!my_db_conn($conn)){
 	throw new exception ("DB Error : PDO Instance");
 }
 
 // POST로 request가 왔을 때 처리
-$http_method=$_SERVER["REQUEST_METHOD"];
+$http_method=$_SERVER["REQUEST_METHOD"]; //어떤 메소드로 요청했는지
+//만약에 포스트일때; 인서트 페이지에서 포스트로 받아옴
 if($http_method === "POST"){
 	try{
 		// // 파라미터 획득
-		$arr_post = $_POST;
 		$arr_post[] = isset($_POST["chk"]) ? trim($_POST["chk"]) : "1";
 
 			$conn->beginTransaction(); //트랜잭션 시작
@@ -34,11 +41,6 @@ if($http_method === "POST"){
 	} finally {
 		db_destroy_conn($conn); //DB 파기
 	}
-}
-
-$result = db_select_chal_conn($conn, $arr_param);
-if(!$result){
-	throw new Exception("DB Error:Challenge info error");
 }
 
 ?>
