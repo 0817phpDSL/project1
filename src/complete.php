@@ -96,8 +96,6 @@ try {
                 ,"list" => $result1
              ];
              $data[] = $arr_item;
-
-            var_dump($result);
         }
         //  [
         //     [

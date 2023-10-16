@@ -63,21 +63,21 @@ return false; // 예외발생 : false 리턴
 // db 완료된 리스트 출력 함수
 function db_select_com_list(&$conn, &$arr_param) {
     try {
-    $sql =
-    " SELECT
-    ch.l_name
-FROM chal_info ch
-WHERE ch.c_id = :c_id "
-    ;
+        $sql =
+            " SELECT
+            ch.l_name
+            FROM chal_info ch
+            WHERE ch.c_id = :c_id "
+        ;
 
-    $arr_ps = [
-        ":c_id" => $arr_param["c_id"]
-    ];
-    $stmt = $conn->prepare($sql);
-    $stmt->execute($arr_ps);
-    $result = $stmt->fetchAll();
-return $result; // 정상 : 쿼리 결과 리턴
-} catch(Exception $e) {
-    return false; // 예외발생 : false 리턴
+        $arr_ps = [
+            ":c_id" => $arr_param["c_id"]
+        ];
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        return false; // 예외발생 : false 리턴
     }
 }
