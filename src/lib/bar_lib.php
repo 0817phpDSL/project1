@@ -55,4 +55,3 @@ function db_select_challenge_bar(&$conn) {
         return false; // 예외 발생 : false 리턴
     }
 }
-    
