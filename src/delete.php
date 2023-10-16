@@ -59,6 +59,8 @@ $conn = null;
 			$conn->rollBack();
 			echo $e->getMessage();
 			exit;
+		}finally {
+			db_destroy_conn($conn);
 		}
 	}
 	
@@ -67,8 +69,6 @@ $conn = null;
 		// 	$create_id = isset($_GET["create_id"]) ? $_GET["create_id"] : "";
 		// 	$page_flg = isset($_GET["page_flg"]) ? $_GET["page_flg"] : "";
 		
-
-
 
 		// print_r($arr_get);
 		// print_r($result);
