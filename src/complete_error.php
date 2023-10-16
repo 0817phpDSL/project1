@@ -14,7 +14,7 @@ $err_msg = isset($_GET["err_msg"]) ? $_GET["err_msg"] : "";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>에러 페이지</title>
+    <title>Complete-error</title>
     <link rel="stylesheet" href="/project1/src/css/complete_error.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
