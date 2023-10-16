@@ -109,7 +109,7 @@ $in_progress_c_id = $arr_get["create_id"];
 	<link rel="stylesheet" href="./css/header.css">
 	<link rel="stylesheet" href="./css/status.css">
 	<link rel="stylesheet" href="./css/challenge_bar.css">
-	<title>Document</title>
+	<title>in-progress</title>
 </head>
 <body>
 	<?php

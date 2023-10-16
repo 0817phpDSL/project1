@@ -12,7 +12,7 @@ define("FILE_CHALLENGE", ROOT."challenge_bar.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Document</title>
+    <title>Main</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/challenge_bar.css">
     <link rel="stylesheet" href="css/status.css">
