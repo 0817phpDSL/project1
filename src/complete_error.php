@@ -29,7 +29,7 @@ $err_msg = isset($_GET["err_msg"]) ? $_GET["err_msg"] : "";
 	require_once(FILE_STATUS);
     ?>
     <section class="section-in">
-    <?php echo $err_msg ?>
+    <p class="err_msg"><?php echo $err_msg ?></p>
     </section>
     <?php
     require_once(FILE_CHALLENGE);
