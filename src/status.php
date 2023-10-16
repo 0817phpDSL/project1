@@ -4,7 +4,7 @@
 	<p class="p-nav">Status</p>
 	<br>
 	<?php
-	if($_SERVER['REQUEST_URI'] == "/project1/src/in-progress.php") { ?>
+	if($_SERVER['REQUEST_URI'] == "/project1/src/in-progress.php" || $_SERVER['REQUEST_URI'] == "/project1/src/in-progress_error.php") { ?>
 		<p class="box-in"></p><a class="box-color a_a" href="/project1/src/in-progress.php"> in progress</a>
 	<?php } else { ?>
 		<p class="box-in"></p><a class="a_a"href="/project1/src/in-progress.php"> in progress</a>

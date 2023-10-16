@@ -14,7 +14,7 @@ require_once(ROOT. "lib/bar_lib.php"); // DB 라이브러리
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>에러 페이지</title>
-    <link rel="stylesheet" href="/project1/src/css/in-progress_error.css">
+    <link rel="stylesheet" href="/project1/src/css/error.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@ require_once(ROOT. "lib/bar_lib.php"); // DB 라이브러리
 	require_once(FILE_STATUS);
     ?>
     <section class="section-in">
-    <?php echo "진행 중인 챌린지가 없습니다." ?>
+    <p class="err_msg"><?php echo "No item in-progress" ?></p>
     </section>
     <?php
     require_once(FILE_CHALLENGE);
