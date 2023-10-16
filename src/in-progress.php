@@ -27,21 +27,52 @@ try{
 
 		$flg_tran = $conn->beginTransaction();
 
-		$com_list = db_complete_list($conn, $arr_post);
-		if($com_list === false) {
-		throw new Exception("complete_list Error");
-		}
-
 		$com_check = db_select_complete_check($conn, $arr_post);
 		if($com_check === false) {
 			throw new Exception("complete_check Error");
 		}
-		if($com_check[0]["l_com_at1"] != "" && $com_check[0]["l_com_at2"] != "" && $com_check[0]["l_com_at3"] != "" && $com_check[0]["l_com_at4"] != "") {
-			$c_com = ["create_id" => $com_check[0]["create_id"]];
-			if(db_complete_at($conn, $c_com) === false) {
-				throw new Exception("complete_at Error");
+
+		$complete_list = $com_check[0]["l_com_at".$arr_post["l_id"]];
+
+		if($complete_list != NULL) {
+			if(db_complete_cancel($conn, $arr_post) === false) {
+				throw new Exception("complete_list cancel Error");
+			}
+
+			$com_check = db_select_complete_check($conn, $arr_post);
+			if($com_check === false) {
+				throw new Exception("complete_check Error");
+			}
+
+			$complete_count = db_complete_count($conn, $arr_post);
+			if($complete_count === false) {
+				throw new Exception("complete count Error");
+			}
+
+			if($complete_count[0]["cnt"] < 4) {
+				if(db_complete_at_cancel($conn, $arr_post) === false) {
+					throw new Exception("complete_cancel Error");
+				}
+			}
+		} else {
+			$com_list = db_complete_list($conn, $arr_post);
+			if($com_list === false) {
+			throw new Exception("complete_list Error");
+			}
+
+			$com_check = db_select_complete_check($conn, $arr_post);
+			if($com_check === false) {
+				throw new Exception("complete_check Error");
+			}
+			if($com_check[0]["l_com_at1"] != "" && $com_check[0]["l_com_at2"] != "" && $com_check[0]["l_com_at3"] != "" && $com_check[0]["l_com_at4"] != "") {
+				$c_com = ["create_id" => $com_check[0]["create_id"]];
+				if(db_complete_at($conn, $c_com) === false) {
+					throw new Exception("complete_at Error");
+				}
 			}
 		}
+
+
 		$conn->commit();
 		$arr_get = $arr_post;
 	}
@@ -113,7 +144,7 @@ $in_progress_c_id = $arr_get["create_id"];
 </head>
 <body>
 	<?php
-    require_once(FILE_HEADER);
+    // require_once(FILE_HEADER);
 	require_once(FILE_STATUS);
     ?>
 	<section class="section-in">
