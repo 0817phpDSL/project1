@@ -7,10 +7,6 @@ $arr_post = [];
 $conn=null;
 
 
-$result = db_select_chal_conn($conn);
-if(!$result){
-	throw new Exception("DB Error:Challenge info error");
-}
 
 // DB접속
 if(!my_db_conn($conn)){
@@ -41,6 +37,11 @@ if($http_method === "POST"){
 	} finally {
 		db_destroy_conn($conn); //DB 파기
 	}
+}
+
+$result = db_select_chal_conn($conn);
+if(!$result){
+	throw new Exception("DB Error:Challenge info error");
 }
 
 ?>
