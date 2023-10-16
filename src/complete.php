@@ -62,7 +62,7 @@ try {
         $result = db_select_create_information($conn, $arr_param);
         if(!$result) {
             // Select 에러
-            throw new Exception("DB Error : SELECT"); // 강제 예외 발생 : SELECT board
+            throw new Exception("No completed item"); // 강제 예외 발생 : SELECT board
         }
 
         $data = [];
@@ -113,7 +113,9 @@ try {
     }
 catch(Exception $e) {
         // 예외 발생 메세지 (getMessage 메소드) 출력
-        echo $e->getMessage();
+        // echo $e->getMessage();
+        header("Location: complete_error.php/?err_msg={$e->getmessage()}"); // error 메세지 출력 (error.php)
+
         // 처리 종료
         exit;
     }
