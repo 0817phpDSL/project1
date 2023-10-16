@@ -5,8 +5,6 @@ define("FILE_STATUS", ROOT."status.php");
 define("FILE_CHALLENGE", ROOT."challenge_bar.php");
 require_once(ROOT. "lib/com_lib.php"); // DB 라이브러리
 require_once(ROOT. "lib/bar_lib.php"); // DB 라이브러리
-
-$err_msg = isset($_GET["err_msg"]) ? $_GET["err_msg"] : "";
 ?>
 
 <!DOCTYPE html>
