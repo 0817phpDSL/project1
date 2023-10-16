@@ -27,7 +27,7 @@ try {
 
 <link rel="stylesheet" href="./css/challenge_bar.css">
 <div class="challenge_bar box1">
-    <form action="/project1/src/in-progress.php" method="get">
+    <form action="/project1/src/in-progress.php"  method="get">
         <header class="challenge_header">
             <p class="challenge_title">Challenge</p>
             <a href="insert.php" class="insert_button">+</a>
