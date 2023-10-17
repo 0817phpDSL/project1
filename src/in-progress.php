@@ -112,6 +112,7 @@ try{
 		$conn->rollBack();
 	}
 	echo $e->getMessage(); // Exception 메세지 출력
+	exit;
 } finally {
 	db_destroy_conn($conn);
 }
