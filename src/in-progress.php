@@ -99,6 +99,7 @@ try{
 	}
 	if(count($err_msg) >= 1) {
 		header("Location: in-progress_error.php");
+		exit;
 	}
 
 	$list_per = db_complete_num($conn, $arr_get);
@@ -111,7 +112,6 @@ try{
 		$conn->rollBack();
 	}
 	echo $e->getMessage(); // Exception 메세지 출력
-	exit;
 } finally {
 	db_destroy_conn($conn);
 }
