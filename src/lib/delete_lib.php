@@ -63,6 +63,7 @@ function db_select_boards_id(&$conn, &$arr_get) {
 	." 		cr.create_id = :create_id " ;
 
 	$arr_ps = [
+		// get으로 받아온 create_id를 대입해줌
 		":create_id" => $arr_get["create_id"]
 	];
 
@@ -73,7 +74,7 @@ function db_select_boards_id(&$conn, &$arr_get) {
 		return $result;
 	} catch(Exception $e) {
 		echo $e->getMessage(); // Exception 메세지 출력
-		return false; // 예외발생 : flase 리턴
+		return false; // 예외발생 : false 리턴
 	} 
 }
 

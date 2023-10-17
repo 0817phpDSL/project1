@@ -17,7 +17,6 @@ if(!$result){
 	throw new Exception("DB Error:Challenge info error");
 }
 
-
 // POST로 request가 왔을 때 처리
 $http_method=$_SERVER["REQUEST_METHOD"];
 //요청메소드가 포스트인지 확인

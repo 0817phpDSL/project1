@@ -43,6 +43,7 @@ try {
     JOIN chal_info ch
         ON ci.c_id = ch.c_id
     WHERE ci.c_com_at IS NOT NULL and ci.c_deleted_at IS NULL
+    ORDER BY ci.c_created_at DESC
     LIMIT :list_cnt
     OFFSET :offset ";
 

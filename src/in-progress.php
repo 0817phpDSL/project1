@@ -183,7 +183,7 @@ $in_progress_c_id = $arr_get["create_id"];
 	</form>
 	<form action="delete.php" method="get">
 		<input type="hidden" name="page_flg" value="0">
-		<button name="create_id" value="<?php echo $arr_get["create_id"]; ?>" onclick="location.href('../delete/delete.php')" class="trash"></button>
+		<button name="create_id" value="<?php echo $arr_get["create_id"]; ?>" class="trash"></button>
 	</form>
 	</section>
 	<?php
