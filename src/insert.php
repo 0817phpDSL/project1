@@ -12,18 +12,13 @@ if(!my_db_conn($conn)){
 	throw new exception ("DB Error : PDO Instance");
 }
 
-$result = db_select_chal_conn($conn);
-if(!$result){
-	throw new Exception("DB Error:Challenge info error");
-}
-
 // POST로 request가 왔을 때 처리
 $http_method=$_SERVER["REQUEST_METHOD"];
 //요청메소드가 포스트인지 확인
 if($http_method === "POST"){
 	try{
-		// // 파라미터 획득
-		$arr_post[] = isset($_POST["chk"]) ? trim($_POST["chk"]) : "1";
+		// // 파라미터(함수나 메서드를 호출할 때 전달되는 값) 획득
+		$arr_post["chk"] = isset($_POST["chk"]) ? trim($_POST["chk"]) : "1";
 
 			$conn->beginTransaction(); //트랜잭션 시작
 			if(!db_insert_create_at($conn, $arr_post)) {
