@@ -32,7 +32,7 @@ function db_destroy_conn(&$conn) {
 
 
 
-function db_select_chal_conn(&$conn, &$arr_param) {
+function db_select_chal_conn(&$conn) {
 try{
 $sql = 
 	" SELECT DISTINCT "
