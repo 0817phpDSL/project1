@@ -70,7 +70,7 @@ try {
         } 
         
         $data = [];
-        
+
         foreach($result as $item) {
             $arr_param = [
                 "c_id" => $item["c_id"]
@@ -91,6 +91,7 @@ try {
                 ,"c_name" => $item["c_name"]
                 ,"list" => $result1
              ];
+
              $data[] = $arr_item;
         }
         //  [
