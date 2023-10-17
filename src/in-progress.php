@@ -97,7 +97,7 @@ try{
 	if(count($list) === 0) {
 		$err_msg[] = "error";
 	}
-	if(count($err_msg) >= 1) {
+	if(count($err_msg) === 1) {
 		header("Location: in-progress_error.php");
 		exit;
 	}
