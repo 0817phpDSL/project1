@@ -68,10 +68,10 @@ try {
         if(count($err_msg) >= 1) {
             header("Location: complete_error.php"); // error 메세지 출력 (error.php)
         }
-        if(!$result) {
-            // Select 에러
-            throw new Exception("No completed item"); // 강제 예외 발생 : SELECT board
-        }
+        // if(!$result) {
+        //     // Select 에러
+        //     throw new Exception("No completed item"); // 강제 예외 발생 : SELECT board
+        // }
         
 
         $data = [];
