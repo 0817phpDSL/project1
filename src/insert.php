@@ -17,6 +17,7 @@ if(!$result){
 	throw new Exception("DB Error:Challenge info error");
 }
 
+
 // POST로 request가 왔을 때 처리
 $http_method=$_SERVER["REQUEST_METHOD"];
 //요청메소드가 포스트인지 확인
@@ -41,6 +42,11 @@ if($http_method === "POST"){
 	} finally {
 		db_destroy_conn($conn); //예외 발생 여부와 상관없이 항상 실행. 데이터베이스 연결 파기 
 	}
+}
+
+$result = db_select_chal_conn($conn);
+if(!$result){
+	throw new Exception("DB Error:Challenge info error");
 }
 
 ?>
