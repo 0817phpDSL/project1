@@ -38,7 +38,7 @@ if($http_method === "POST"){
 	}
 }
 
-$result = db_select_chal_conn($conn);
+$result = db_select_chal_conn($conn); // 오토커밋 꺼져있어서 트랜잭션 오류나서 밑에있음
 if(!$result){
 	throw new Exception("DB Error:Challenge info error");
 }
@@ -67,7 +67,7 @@ if(!$result){
 	<form class="boxed" action="insert.php" method="post">
 			<p class="create_at"><?php echo date("Y-m-d")?></p>
 
-		<input type="radio" name="chk" id="chk1" value="<?php echo $result[0]["c_id"] ?>">
+		<input type="radio" name="chk" id="chk1" checked="checked" value="<?php echo $result[0]["c_id"] ?>">
 			<label for="chk1" class="div_1">
 				<h3><?php echo $result[0]["c_name"]?></h3>
 					<br>
