@@ -97,8 +97,9 @@ try{
 	if(count($list) === 0) {
 		$err_msg[] = "error";
 	}
-	if(count($err_msg) >= 1) {
+	if(count($err_msg) === 1) {
 		header("Location: in-progress_error.php");
+		exit;
 	}
 
 	$list_per = db_complete_num($conn, $arr_get);
@@ -183,7 +184,7 @@ $in_progress_c_id = $arr_get["create_id"];
 	</form>
 	<form action="delete.php" method="get">
 		<input type="hidden" name="page_flg" value="0">
-		<button name="create_id" value="<?php echo $arr_get["create_id"]; ?>" class="trash"></button>
+		<button type="submit" name="create_id" value="<?php echo $arr_get["create_id"]; ?>" class="trash"></button>
 	</form>
 	</section>
 	<?php
