@@ -96,6 +96,7 @@ function db_delete_boards_id(&$conn, &$arr_post) {
 	;
 
 	$arr_ps = [
+		// POST로 받아온 create_id
 		":create_id" => $arr_post["create_id"]
 	];
 

@@ -31,6 +31,7 @@ $conn = null;
 
 	// Method가 GET일 경우
 	if($http_method === "GET") {
+		// 모든 파라미터에는 trim을 넣어서 앞뒤의 공백을 없애줘야함. (중간의 공백은 안 없어짐)
 		$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : "";
 		$arr_get["page_flg"] = isset($_GET["page_flg"]) ? $_GET["page_flg"] : "";
 	
@@ -46,7 +47,9 @@ $conn = null;
 	} else {
 		// Method가 POST일 경우
 		try{
-			$arr_post = $_POST;
+			// 삭제페이지에서 받아온 POST값 변수에 담아줌
+			$arr_post["create_id"] = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
+			$arr_post["page_flg"] = isset($_POST["page_flg"]) ? $_POST["page_flg"] : "";
 
 			$conn->beginTransaction();
 
