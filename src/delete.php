@@ -22,6 +22,7 @@ $arr_post = [];
 // 빈 배열로 선언해주고 시작.
 
 $conn = null;
+try {
 	// DB 연동 함수
 	if(!my_db_conn($conn)) {
 		throw new Exception("DB Error : PDO Instance");
@@ -31,6 +32,7 @@ $conn = null;
 
 	// Method가 GET일 경우
 	if($http_method === "GET") {
+		// 모든 파라미터에는 trim을 넣어서 앞뒤의 공백을 없애줘야함. (중간의 공백은 안 없어짐)
 		$arr_get["create_id"] = isset($_GET["create_id"]) ? $_GET["create_id"] : "";
 		$arr_get["page_flg"] = isset($_GET["page_flg"]) ? $_GET["page_flg"] : "";
 	
@@ -42,35 +44,35 @@ $conn = null;
 		if($result === false) {
 			throw new Exception("DB Error : Select id");
 		}
-
 	} else {
 		// Method가 POST일 경우
-		try{
-			$arr_post = $_POST;
+		// 삭제페이지에서 받아온 POST값 변수에 담아줌
+		$arr_post["create_id"] = isset($_POST["create_id"]) ? $_POST["create_id"] : "";
+		$arr_post["page_flg"] = isset($_POST["page_flg"]) ? $_POST["page_flg"] : "";
 
-			$conn->beginTransaction();
+		$conn->beginTransaction();
 
-			if(!db_delete_boards_id($conn, $arr_post)) {
-				throw new Exception("delete Error");
-			}
-			
-			$conn->commit();
-
-			// 삭제 후 돌아갈 페이지 구분
-			if($arr_post["page_flg"] === "0") {
-				header("Location: in-progress.php");
-			} else if($arr_post["page_flg"] === "1") {
-				header("Location: complete.php");
-			}
-			exit;
-		} catch(Exception $e) {
-			$conn->rollBack();
-			echo $e->getMessage();
-			exit;
-		}finally {
-			db_destroy_conn($conn);
+		if(!db_delete_boards_id($conn, $arr_post)) {
+			throw new Exception("delete Error");
 		}
+		
+		$conn->commit();
+
+		// 삭제 후 돌아갈 페이지 구분
+		if($arr_post["page_flg"] === "0") {
+			header("Location: in-progress.php");
+		} else if($arr_post["page_flg"] === "1") {
+			header("Location: complete.php");
+		}
+		exit;
 	}
+} catch(Exception $e) {
+	$conn->rollBack();
+	echo $e->getMessage();
+	exit;
+}finally {
+	db_destroy_conn($conn);
+}
 	
 
 ?>
