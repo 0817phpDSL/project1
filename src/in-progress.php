@@ -39,11 +39,6 @@ try{
 				throw new Exception("complete_list cancel Error");
 			}
 
-			$com_check = db_select_complete_check($conn, $arr_post);
-			if($com_check === false) {
-				throw new Exception("complete_check Error");
-			}
-
 			$complete_count = db_complete_count($conn, $arr_post);
 			if($complete_count === false) {
 				throw new Exception("complete count Error");

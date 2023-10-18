@@ -1,7 +1,6 @@
 CREATE TABLE Create_information (
-create_id INT PRIMARY KEY,
+create_id INT PRIMARY KEY AUTO_INCREMENT,
 c_id INT NOT null,
-l_id INT NOT null,
 c_created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 l_com_at1 DATETIME,
 l_com_at2 DATETIME,
