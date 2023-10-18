@@ -60,40 +60,40 @@ try {
     ];
 
 //---------------------------------------------------------------------------
-        // 리스트 조회
-        $result = db_select_create_information($conn, $arr_param);
-        if(count($result) === 0) {
-            $err_msg[] = "error";
-        }
-        if(count($err_msg) >= 1) {
+    // 리스트 조회
+    $result = db_select_create_information($conn, $arr_param);
+    if(count($result) === 0) {
+        $err_msg[] = "error";
+    }
+    if(count($err_msg) >= 1) {
             header("Location: complete_error.php"); // error 메세지 출력 (error.php)
-        } 
+      } 
         
-        $data = [];
+      $data = [];
 
-        foreach($result as $item) {
-            $arr_param = [
-                "c_id" => $item["c_id"]
-            ];
-            // 완료 리스트 출력
-             $result1 = db_select_com_list($conn, $arr_param);
+    foreach($result as $item) {
+          $arr_param = [
+               "c_id" => $item["c_id"]
+          ];
+          // 완료 리스트 출력
+          $result1 = db_select_com_list($conn, $arr_param);
              if(!$result1) {
                  // Select 에러
                  throw new Exception("DB Error : SELECT com list"); // 강제 예외 발생 : SELECT board
              }
 
-             // 화면 표시용 데이터 배열에 데이터 삽입
-             $arr_item = [
+          // 화면 표시용 데이터 배열에 데이터 삽입
+          $arr_item = [
                 "create_id" => $item["create_id"]
                 ,"c_id" => $item["c_id"]
                 ,"c_created_at" => $item["c_created_at"]
                 ,"c_com_at" => $item["c_com_at"]
                 ,"c_name" => $item["c_name"]
                 ,"list" => $result1
-             ];
+          ];
 
-             $data[] = $arr_item;
-        }
+          $data[] = $arr_item;
+    }
         //  [
         //     [
         //         "c_id" => 1
