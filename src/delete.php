@@ -18,6 +18,7 @@ require_once(ROOT."lib/delete_lib.php"); // DB관련 라이브러리
 
 $arr_get = [];
 $arr_post = [];
+// ****** arr_get,arr_post로 나누지말고 $arr_request로 한번에 받아서 사용하기.
 // $_GET, $_POST로 받아 온 값(배열)을 변수에 담아 놓고 사용할것임.
 // 빈 배열로 선언해주고 시작.
 
