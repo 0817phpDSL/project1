@@ -4,8 +4,7 @@ define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/project1/src/"); //웹 서버
 require_once(ROOT."lib/insert_lib.php"); // DB 라이브러리
 
 $arr_post = [];
-$conn=null;
-
+$conn=null; //이전에 했던 작업들중에 남아있는 데이터가 있을수도있어서 초기화해야함
 
 
 // DB접속
@@ -14,12 +13,12 @@ if(!my_db_conn($conn)){
 }
 
 // POST로 request가 왔을 때 처리
-$http_method=$_SERVER["REQUEST_METHOD"]; //어떤 메소드로 요청했는지
-//만약에 포스트일때; 인서트 페이지에서 포스트로 받아옴
+$http_method=$_SERVER["REQUEST_METHOD"];
+//요청메소드가 포스트인지 확인
 if($http_method === "POST"){
 	try{
-		// // 파라미터 획득
-		$arr_post[] = isset($_POST["chk"]) ? trim($_POST["chk"]) : "1";
+		// // 파라미터(함수나 메서드를 호출할 때 전달되는 값) 획득
+		$arr_post["chk"] = isset($_POST["chk"]) ? trim($_POST["chk"]) : "1";
 
 			$conn->beginTransaction(); //트랜잭션 시작
 			if(!db_insert_create_at($conn, $arr_post)) {
@@ -31,15 +30,15 @@ if($http_method === "POST"){
 			header("Location: in-progress.php");
 			exit;
 	} catch(Exception $e) {
-		$conn->rollBack();
+		$conn->rollBack(); 
 		echo $e->getMessage(); //exception 메세지 출력
 		exit;
 	} finally {
-		db_destroy_conn($conn); //DB 파기
+		db_destroy_conn($conn); //예외 발생 여부와 상관없이 항상 실행. 데이터베이스 연결 파기 
 	}
 }
 
-$result = db_select_chal_conn($conn);
+$result = db_select_chal_conn($conn); // 오토커밋 꺼져있어서 트랜잭션 오류나서 밑에있음
 if(!$result){
 	throw new Exception("DB Error:Challenge info error");
 }
@@ -68,7 +67,7 @@ if(!$result){
 	<form class="boxed" action="insert.php" method="post">
 			<p class="create_at"><?php echo date("Y-m-d")?></p>
 
-		<input type="radio" name="chk" id="chk1" value="<?php echo $result[0]["c_id"] ?>">
+		<input type="radio" name="chk" id="chk1" checked="checked" value="<?php echo $result[0]["c_id"] ?>">
 			<label for="chk1" class="div_1">
 				<h3><?php echo $result[0]["c_name"]?></h3>
 					<br>
